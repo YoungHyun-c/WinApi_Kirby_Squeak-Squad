@@ -21,6 +21,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     _In_ LPWSTR    lpCmdLine,
     _In_ int       nCmdShow)
 {
+    // callback 방식
+    // core에 숨기자.
     GameEngineWindow::MainWindow.MessageLoop(hInstance, TestStart, TestUpdate, TestEnd);
     
 

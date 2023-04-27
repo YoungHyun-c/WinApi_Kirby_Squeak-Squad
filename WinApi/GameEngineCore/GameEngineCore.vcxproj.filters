@@ -6,4 +6,9 @@
   <ItemGroup>
     <ClCompile Include="GameEngineCore.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Object">
+      <UniqueIdentifier>{f678ad04-e1c1-4a53-9275-6d9dd29b1cd3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
 </Project>
