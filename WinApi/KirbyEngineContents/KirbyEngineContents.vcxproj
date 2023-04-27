@@ -70,6 +70,26 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)Bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)Bin\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);..\;</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)Bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)Bin\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);..\;</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)Bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)Bin\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);..\;</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)Bin\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)Bin\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);..\;</IncludePath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -127,6 +147,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Player.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Player.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GameEngineBase\GameEngineBase.vcxproj">
+      <Project>{5a502220-530c-4b92-b8b3-90692041ea66}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\GameEngineCore\GameEngineCore.vcxproj">
+      <Project>{ff11751a-b20a-4f2b-bfd5-96c687d6b419}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\GameEnginePlatform\GameEnginePlatform.vcxproj">
+      <Project>{14fa8cf7-ea7f-41b3-b306-a39afca3542b}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
