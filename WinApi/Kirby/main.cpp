@@ -1,29 +1,22 @@
-#include <GameEnginePlatform/GameEngineWindow.h>
 #include <iostream>
+#include <GameEngineCore/GameEngineCore.h>
 
-void TestStart(HINSTANCE _Inst)
-{
-    GameEngineWindow::MainWindow.Open("MainWindow", _Inst);
-}
+#include <KirbyEngineContents/PlayLevel.h>
+#include <KirbyEngineContents/TitleLevel.h>
+#include <list>
 
-void TestEnd()
-{
-
-}
-
-void TestUpdate()
-{
-
-}
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     _In_opt_ HINSTANCE hPrevInstance,
     _In_ LPWSTR    lpCmdLine,
     _In_ int       nCmdShow)
 {
+    GameEngineCore::EngineStart("MyWindow", hInstance);
+    GameEngineCore::EngineStart("MyWindow1", hInstance);
+
     // callback 방식
     // core에 숨기자.
-    GameEngineWindow::MainWindow.MessageLoop(hInstance, TestStart, TestUpdate, TestEnd);
+    //GameEngineWindow::MainWindow.MessageLoop(hInstance, TestStart, TestUpdate, TestEnd);
     
 
     //GameEngineWindow::MainWindow.Open("MainWindow", hInstance);
