@@ -12,7 +12,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     _In_ int       nCmdShow)
 {
     GameEngineCore::EngineStart("MyWindow", hInstance);
-    GameEngineCore::EngineStart("MyWindow1", hInstance);
 
     // callback 방식
     // core에 숨기자.
