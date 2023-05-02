@@ -13,6 +13,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameEnginePlatform", "GameE
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DOC", "DOC", "{B9CD8F51-6B49-4451-AFCA-E8E98BFA6A05}"
 	ProjectSection(SolutionItems) = preProject
+		델타 타임.txt = 델타 타임.txt
 		프로젝트 구성.txt = 프로젝트 구성.txt
 	EndProjectSection
 EndProject

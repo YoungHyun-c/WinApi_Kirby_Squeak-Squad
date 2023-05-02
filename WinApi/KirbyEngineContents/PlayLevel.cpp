@@ -1,5 +1,6 @@
 #include "PlayLevel.h"
 #include "Player.h"
+#include <GameEngineCore/GameEngineCore.h>
 
 PlayLevel::PlayLevel()
 {
@@ -27,7 +28,7 @@ void PlayLevel::Start()
 
 void PlayLevel::Update()
 {
-
+	//GameEngineCore::ChangeLevel("TitleLevel");
 }
 
 void PlayLevel::Render()
