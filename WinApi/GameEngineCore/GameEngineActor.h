@@ -22,6 +22,7 @@ public:
 		Pos = _Pos;
 	}
 
+	// 실수는 무조건 오차가 생기긴한다.
 	void AddPos(const float4& _Pos)
 	{
 		Pos += _Pos;
