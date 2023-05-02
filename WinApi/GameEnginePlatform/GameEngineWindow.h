@@ -21,6 +21,11 @@ public:
 
 	static void MessageLoop(HINSTANCE _Inst, void(*_Start)(HINSTANCE), void(*_Update)(), void(*_End)());
 
+	HDC GetHDC()
+	{
+		return Hdc;
+	}
+
 protected:
 
 private:
@@ -28,6 +33,7 @@ private:
 	static HINSTANCE Instance;
 	std::string Title = "";
 	HWND hWnd = nullptr;
+	HDC Hdc = nullptr;
 
 	static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 	void InitInstance();

@@ -1,19 +1,16 @@
 #include <iostream>
 #include <GameEngineCore/GameEngineCore.h>
-
-#include <KirbyEngineContents/PlayLevel.h>
-#include <KirbyEngineContents/TitleLevel.h>
-#include <list>
-
+#include <KirbyEngineContents/ContentCore.h>
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     _In_opt_ HINSTANCE hPrevInstance,
     _In_ LPWSTR    lpCmdLine,
     _In_ int       nCmdShow)
 {
-    GameEngineCore::CreateLevel<TitleLevel>("TitleLevel");
+    GameEngineCore::EngineStart<ContentCore>("MyWindow", hInstance);
+    //GameEngineCore::CreateLevel<TitleLevel>("TitleLevel");
   
-    GameEngineCore::EngineStart("MyWindow", hInstance);
+    //GameEngineCore::EngineStart("MyWindow", hInstance);
 
     // callback 방식
     // core에 숨기자.
