@@ -1,6 +1,7 @@
 #include "PlayLevel.h"
 #include "Player.h"
 #include <GameEngineCore/GameEngineCore.h>
+#include <GameEngineCore/ResourcesManager.h>
 
 PlayLevel::PlayLevel()
 {
@@ -14,6 +15,8 @@ PlayLevel::~PlayLevel()
 
 void PlayLevel::Start()
 {
+	// ResourcesManager::GetInst().TextureLoad("AAA.Png", 경로);
+
 	// 플레이 레벨이 만들어졌다.
 	// 이 레벨에는 뭐가 있어야지?
 	// 플레이어 만들고
@@ -26,7 +29,7 @@ void PlayLevel::Start()
 	CreateActor<Player>();
 }
 
-void PlayLevel::Update()
+void PlayLevel::Update(float _Delta)
 {
 	//GameEngineCore::ChangeLevel("TitleLevel");
 }

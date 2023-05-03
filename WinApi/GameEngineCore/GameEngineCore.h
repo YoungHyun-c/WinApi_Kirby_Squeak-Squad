@@ -16,9 +16,7 @@ class GameEngineLevel;
 class GameEngineCore
 {
 public:
-	// constructer destructer
-	GameEngineCore();
-	~GameEngineCore();
+
 
 	// delete Function
 	GameEngineCore(const GameEngineCore& _Other) = delete;
@@ -93,5 +91,9 @@ private:
 	static GameEngineLevel* CurLevel;
 	static GameEngineLevel* NextLevel;
 	static std::map<std::string, GameEngineLevel*> AllLevel;
+
+	// constructer destructer
+	GameEngineCore();
+	~GameEngineCore();
 };
 

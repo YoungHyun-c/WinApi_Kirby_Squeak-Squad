@@ -1,4 +1,5 @@
 #pragma once
+#include <Windows.h>
 
 // Ό³Έν :
 class GameEngineTexture

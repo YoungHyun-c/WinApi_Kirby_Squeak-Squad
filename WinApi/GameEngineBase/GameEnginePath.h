@@ -17,10 +17,14 @@ public:
 	GameEnginePath& operator = (const GameEnginePath& _Other) = delete;
 	GameEnginePath& operator = (GameEnginePath&& _Other) noexcept = delete;
 
+	void GetCurrentPath();
+
 protected:
 
 private:
-	std::string Path;
+	std::filesystem::path Path;
+
+	//std::string Path;
 
 };
 

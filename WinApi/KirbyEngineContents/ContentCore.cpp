@@ -24,7 +24,7 @@ void ContentCore::Start()
 }
 
 // 행동하고
-void ContentCore::Update()
+void ContentCore::Update(float _Delta)
 {
 
 }
