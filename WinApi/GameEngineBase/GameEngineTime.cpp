@@ -1,21 +1,23 @@
 #include "GameEngineTime.h"
-#include <Windows.h>
+
 
 GameEngineTime GameEngineTime::MainTimer;
 
 GameEngineTime::GameEngineTime()
 {
-	//LARGE_INTEGER Count;
-	//LARGE_INTEGER Cur;
-	//LARGE_INTEGER Prev;
+	QueryPerformanceFrequency(&Count);
+	QueryPerformanceCounter(&Cur);
 
-	//QueryPerformanceFrequency(&Count);
-	//QueryPerformanceCounter(&Cur);
-
-	//QueryPerformanceCounter(&Cur);
 }
 
 GameEngineTime::~GameEngineTime()
 {
 
+}
+
+void GameEngineTime::Update()
+{
+	
+	// 8바이트 실수형, 훨씬 더 많은 실수를 표현할 수 있음.
+	double DoubleDelta = 
 }

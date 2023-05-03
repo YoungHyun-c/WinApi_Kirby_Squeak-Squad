@@ -1,4 +1,5 @@
 #pragma once
+#include <Windows.h>
 
 // Ό³Έν :
 class GameEngineTime
@@ -21,11 +22,13 @@ public:
 		return 0.0f;
 	}
 
+	void Update();
+
 protected:
 
 private:
-	//LARGE_INTEGER Count;
-	//LARGE_INTEGER Cur;
-	//LARGE_INTEGER Prev;
+	LARGE_INTEGER Count = { 0 };
+	LARGE_INTEGER Cur = { 0 };
+	LARGE_INTEGER Prev = { 0 };
 };
 
