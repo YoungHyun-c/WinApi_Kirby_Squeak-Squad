@@ -18,7 +18,7 @@ Player::~Player()
 
 void Player::Start()
 {
-	if (false == ResourcesManager::GetInst().IsLoadTexture("Player_Idle.Bmp"));
+	if (false == ResourcesManager::GetInst().IsLoadTexture("Player_Idle.Bmp"))
 	{
 		// 무조건 자동으로 현재 실행중인 위치가 된다.
 		GameEnginePath FilePath;
