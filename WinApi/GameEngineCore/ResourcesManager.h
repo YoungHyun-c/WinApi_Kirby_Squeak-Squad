@@ -1,5 +1,7 @@
 #pragma once
 #include <string>
+#include <map>
+#include <GameEngineBase/GameEnginePath.h>
 
 // 설명 : 선생님이 마지막으로 알려주는 싱글톤
 // 싱글톤이 뭐지??
@@ -32,16 +34,15 @@ public:
 	void TextureLoad(const std::string& _Path)
 	{
 		// _Path 파일명
-
 		// TextureLoad();
+		GameEnginePath LoadPath = _Path;
+		TextureLoad(LoadPath.GetFileName(), _Path);
 	}
 
-	void TextureLoad(const std::string& _Name, const std::string& _Path)
-	{
+	void TextureLoad(const std::string& _Name, const std::string& _Path);
 
-	}
+	GameEngineTexture* FindTexture(const std::string& _Name);
 
-	GameEngineTexture* FindTexture(const std::string& _Image);
 	bool IsLoadTexture(const std::string& _Image);
 
 protected:
@@ -55,4 +56,6 @@ private:
 	// 1. 생성자를 private안에 넣는다.
 	ResourcesManager();
 	~ResourcesManager();
+
+	std::map<std::string, GameEngineTexture*> AllTexture;
 };

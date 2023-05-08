@@ -18,14 +18,20 @@ Player::~Player()
 
 void Player::Start()
 {
-	if (false == ResourcesManager::GetInst().IsLoadTexture("Player_Idle.Bmp"))
+	if (false == ResourcesManager::GetInst().IsLoadTexture("Test.Bmp"))
 	{
 		// 무조건 자동으로 현재 실행중인 위치가 된다.
 		GameEnginePath FilePath;
 
 		FilePath.GetCurrentPath();
 
-		ResourcesManager::GetInst().TextureLoad("Player_Idle.Bmp");
+		//ResourcesManager::GetInst().TextureLoad("Player_Idle.Bmp");
+
+		FilePath.MoveParentToExistsChild("Resource");
+		FilePath.MoveChild("Resource\\Kirby\\Test.Bmp");
+
+		ResourcesManager::GetInst().TextureLoad(FilePath.GetStringPath());
+
 	}
 
 	SetPos({ 200, 200 });
@@ -52,13 +58,22 @@ void Player::Render()
 	// SetScale({ 100, 100 });
 
 	HDC WindowDC = GameEngineWindow::MainWindow.GetHDC();
+	GameEngineTexture* FindTexture = ResourcesManager::GetInst().FindTexture("Test.Bmp");
+	HDC ImageDC = FindTexture->GetImageDC();
 
-	Rectangle(WindowDC,
+	// 특정 DC에 연결된 색상을
+	// 특정 DC에 고속복사하는 함수
+
+	BitBlt(WindowDC, 100, 100, 500, 500, ImageDC, 0, 0, SRCCOPY);
+
+
+	/*Rectangle(WindowDC,
 		GetPos().iX() - GetScale().ihX(),
 		GetPos().iY() - GetScale().ihY(),
 		GetPos().iX() + GetScale().ihX(),
 		GetPos().iY() + GetScale().ihY()
 	);
+	*/
 
 	// 그려야죠
 }
