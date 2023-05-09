@@ -151,6 +151,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BackGround.h">
+      <SubType>
+      </SubType>
+    </ClInclude>
     <ClInclude Include="ContentCore.h">
       <SubType>
       </SubType>
@@ -173,6 +177,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BackGround.cpp">
+      <SubType>
+      </SubType>
+    </ClCompile>
     <ClCompile Include="ContentCore.cpp">
       <SubType>
       </SubType>

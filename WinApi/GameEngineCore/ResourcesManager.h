@@ -14,7 +14,7 @@
 // 이 프로그램에서 이 객체가 1개만 있었으면 좋겠다.
 // 싱글톤이 싫은 이유 : static으로 사용해서 함수를 부르면 되는걸,
 // 굳이 싱글톤으로 참조, 함수를 부를 필요가 있나.
-class GameEngineTexture;
+class GameEngineWindowTexture;
 class ResourcesManager
 {
 public:
@@ -31,17 +31,17 @@ public:
 	}
 
 	//  파일명이 곧 찾기위한 이름이 된다.
-	void TextureLoad(const std::string& _Path)
+	GameEngineWindowTexture* TextureLoad(const std::string& _Path)
 	{
 		// _Path 파일명
 		// TextureLoad();
 		GameEnginePath LoadPath = _Path;
-		TextureLoad(LoadPath.GetFileName(), _Path);
+		return TextureLoad(LoadPath.GetFileName(), _Path);
 	}
 
-	void TextureLoad(const std::string& _Name, const std::string& _Path);
+	GameEngineWindowTexture* TextureLoad(const std::string& _Name, const std::string& _Path);
 
-	GameEngineTexture* FindTexture(const std::string& _Name);
+	GameEngineWindowTexture* FindTexture(const std::string& _Name);
 
 	bool IsLoadTexture(const std::string& _Image);
 
@@ -57,5 +57,5 @@ private:
 	ResourcesManager();
 	~ResourcesManager();
 
-	std::map<std::string, GameEngineTexture*> AllTexture;
+	std::map<std::string, GameEngineWindowTexture*> AllTexture;
 };

@@ -1,7 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClInclude Include="Player.h" />
     <ClInclude Include="EndingLevel.h">
       <Filter>Level</Filter>
     </ClInclude>
@@ -12,9 +11,14 @@
       <Filter>Level</Filter>
     </ClInclude>
     <ClInclude Include="ContentCore.h" />
+    <ClInclude Include="BackGround.h">
+      <Filter>Global</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Global</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Player.cpp" />
     <ClCompile Include="EndingLevel.cpp">
       <Filter>Level</Filter>
     </ClCompile>
@@ -25,10 +29,19 @@
       <Filter>Level</Filter>
     </ClCompile>
     <ClCompile Include="ContentCore.cpp" />
+    <ClCompile Include="BackGround.cpp">
+      <Filter>Global</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Global</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Level">
       <UniqueIdentifier>{414c9fe9-156a-4a79-8ac0-08be45a358ef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Global">
+      <UniqueIdentifier>{222094d9-ecfa-4d8b-9975-dc7b4e7b9334}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

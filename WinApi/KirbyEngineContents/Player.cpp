@@ -3,7 +3,7 @@
 #include <GameEngineBase/GameEngineTime.h>
 #include <GameEngineBase/GameEnginePath.h>
 #include <GameEnginePlatform/GameEngineWindow.h>
-#include <GameEngineCore/GameEngineTexture.h>
+#include <GameEnginePlatform/GameEngineWindowTexture.h>
 #include <GameEngineCore/ResourcesManager.h>
 
 Player::Player()
@@ -57,25 +57,30 @@ void Player::Render()
 	// SetPos({ 200, 200 });
 	// SetScale({ 100, 100 });
 
-	HDC WindowDC = GameEngineWindow::MainWindow.GetHDC();
-	GameEngineTexture* FindTexture = ResourcesManager::GetInst().FindTexture("Test.Bmp");
-	HDC ImageDC = FindTexture->GetImageDC();
+	// 그렸을때 화면에 나오는건 언제나 window에 있는 BackBuffer에 그려야 한다.
+	// 모든건 다 Texture
+	GameEngineWindowTexture* BackBuffer = GameEngineWindow::MainWindow.GetBackBuffer();
+	GameEngineWindowTexture* FindTexture = ResourcesManager::GetInst().FindTexture("Test.Bmp");
+	BackBuffer->BitCopy(FindTexture, GetPos(), GetScale());
 
-	// 특정 DC에 연결된 색상을
-	// 특정 DC에 고속복사하는 함수
+	//HDC WindowDC = GameEngineWindow::MainWindow.GetHDC();
+	//GameEngineTexture* FindTexture = ResourcesManager::GetInst().FindTexture("Test.Bmp");
+	//HDC ImageDC = FindTexture->GetImageDC();
 
-	BitBlt(WindowDC, 100, 100, 500, 500, ImageDC, 0, 0, SRCCOPY);
+	//// 특정 DC에 연결된 색상을
+	//// 특정 DC에 고속복사하는 함수
+
+	//BitBlt(WindowDC, 100, 100, 500, 500, ImageDC, 0, 0, SRCCOPY);
 
 
-	/*Rectangle(WindowDC,
-		GetPos().iX() - GetScale().ihX(),
-		GetPos().iY() - GetScale().ihY(),
-		GetPos().iX() + GetScale().ihX(),
-		GetPos().iY() + GetScale().ihY()
-	);
-	*/
+	///*Rectangle(WindowDC,
+	//	GetPos().iX() - GetScale().ihX(),
+	//	GetPos().iY() - GetScale().ihY(),
+	//	GetPos().iX() + GetScale().ihX(),
+	//	GetPos().iY() + GetScale().ihY()
+	//);
+	//*/
 
-	// 그려야죠
 }
 
 void Player::Release()

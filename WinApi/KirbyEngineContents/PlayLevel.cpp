@@ -1,7 +1,11 @@
 #include "PlayLevel.h"
-#include "Player.h"
+
 #include <GameEngineCore/GameEngineCore.h>
 #include <GameEngineCore/ResourcesManager.h>
+
+// Contents
+#include "Player.h"
+#include "BackGround.h"
 
 PlayLevel::PlayLevel()
 {
@@ -26,6 +30,10 @@ void PlayLevel::Start()
 
 	// 이렇게 만들면 자기 임의대로 만들겠다는 것이라 절대 xxxxx
 	// Player* NewPlayer = new Player();
+
+	BackGround* Back = CreateActor<BackGround>();
+	Back->Init("StageTest.Bmp");
+
 	CreateActor<Player>();
 }
 

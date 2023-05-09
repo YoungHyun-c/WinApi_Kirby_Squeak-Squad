@@ -14,7 +14,11 @@ GameEngineWindow::GameEngineWindow()
 
 GameEngineWindow::~GameEngineWindow()
 {
-
+    if (nullptr != BackBuffer)
+    {
+        delete BackBuffer;
+        BackBuffer = nullptr;
+    }
 }
 
 void GameEngineWindow::Open(const std::string& _Title, HINSTANCE _hInstance)
@@ -34,6 +38,18 @@ void GameEngineWindow::Open(const std::string& _Title, HINSTANCE _hInstance)
 
 void GameEngineWindow::InitInstance()
 {
+
+    //WS_OVERLAPPED | \
+    //    WS_CAPTION | \
+    //    WS_SYSMENU | \
+    //    WS_THICKFRAME | \
+    //    WS_MINIMIZEBOX | \
+    //    WS_MAXIMIZEBOX
+
+
+    // int Test = WS_OVERLAPPED | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME ;
+
+
     // Title은 std::string 자료형, const char* 자료형이 아니므로 string의 자료형을 바꿔 줘야됨
     // => Title.c_str()
     hWnd = CreateWindowA("DefaultClass", Title.c_str(), WS_OVERLAPPEDWINDOW,
@@ -46,6 +62,9 @@ void GameEngineWindow::InitInstance()
     }
 
     Hdc = ::GetDC(hWnd);
+
+    BackBuffer = new GameEngineWindowTexture();
+    BackBuffer->ResCreate(Hdc);
 
     // CreateDC();
 
@@ -171,4 +190,17 @@ void GameEngineWindow::MessageLoop(HINSTANCE _Inst, void(*_Start)(HINSTANCE), vo
 
     //return (int)msg.wParam;
     return;
+}
+
+void GameEngineWindow::SetPosAndScale(const float4& _Pos, const float4& _Scale)
+{
+    //Window에서 LP 포인터라는 뜻 LongPointer
+
+    Scale = _Scale;
+
+    RECT Rc = { 0 , 0, _Scale.iX(), _Scale.iY() };
+
+    AdjustWindowRect(&Rc, WS_OVERLAPPEDWINDOW, FALSE);
+
+    SetWindowPos(hWnd, nullptr, _Pos.iX(), _Pos.iY(), Rc.right - Rc.left, Rc.bottom - Rc.top, SWP_NOZORDER);
 }
