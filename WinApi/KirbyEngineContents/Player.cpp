@@ -51,7 +51,7 @@ void Player::Update(float _Delta)
 	float Time = GameEngineTime::MainTimer.GetDeltaTime();
 
 
-	//AddPos({ 100.0f* _Delta, 0.0f });
+	AddPos({ 100.0f* _Delta, 0.0f });
 }
 
 void Player::Render()
