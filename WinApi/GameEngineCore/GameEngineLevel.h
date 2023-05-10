@@ -9,9 +9,11 @@
 // Å¸ÀÌÆ² Àå¸é
 // ÇÃ·¹ÀÌ Àå¸é
 // ¿£µù Àå¸é
+class GameEngineCamera;
 class GameEngineLevel : public GameEngineObject
 {
 	friend class GameEngineCore;
+	friend class GameEngineActor;
 
 public:
 	// constructer destructer
@@ -45,6 +47,8 @@ private:
 	// -10¹ø std::list<> ¿¢ÅÍ ¿¢ÅÍ ¿¢ÅÍ
 	// 0¹ø std::list<> ¿¢ÅÍ ¿¢ÅÍ ¿¢ÅÍ
 	// 1¹ø std::list<> ¿¢ÅÍ ¿¢ÅÍ ¿¢ÅÍ
+	GameEngineCamera* MainCamera;
+	GameEngineCamera* UICamera;
 
 	std::map<int, std::list<GameEngineActor*>> AllActors;
 

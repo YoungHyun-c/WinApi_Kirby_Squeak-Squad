@@ -1,6 +1,7 @@
 #include "GameEngineWindowTexture.h"
 #include <Windows.h>
 #include <GameEngineBase/GameEngineDebug.h>
+#include "GameEngineWindow.h"
 
 GameEngineWindowTexture::GameEngineWindowTexture()
 {
@@ -48,6 +49,26 @@ void GameEngineWindowTexture::ResLoad(const std::string& _Path)
 
 }
 
+void GameEngineWindowTexture::ResCreate(const float4& _Scale)
+{
+	// 그냥 비어있는 흰색 이미지를 하나 만드는 함수
+	HANDLE ImageHandle = CreateCompatibleBitmap(GameEngineWindow::MainWindow.GetHDC(), _Scale.iX(), _Scale.iY());
+
+	if (nullptr == ImageHandle)
+	{
+		MsgBoxAssert("이미지 생성에 실패 했습니다.");
+		return;
+	}
+
+	BitMap = static_cast<HBITMAP>(ImageHandle);
+
+	ImageDC = CreateCompatibleDC(nullptr);
+
+	OldBitMap = static_cast<HBITMAP>(SelectObject(ImageDC, BitMap));
+
+	ScaleCheck();
+}
+
 void GameEngineWindowTexture::ScaleCheck()
 {
 	GetObject(BitMap, sizeof(BITMAP), &Info);
@@ -79,11 +100,29 @@ void GameEngineWindowTexture::BitCopy(
 	BitBlt(ImageDC,
 		_Pos.iX() - _Scale.ihX(),
 		_Pos.iY() - _Scale.ihY(),
-		_Scale.ihX(),
-		_Scale.ihY(),
+		_Scale.iX(),
+		_Scale.iY(),
 		CopyImageDC,
 		0,
 		0,
 		SRCCOPY);
 
+}
+
+void GameEngineWindowTexture::TransCopy(GameEngineWindowTexture* _CopyTexture, const float4& _Pos, const float4& _Scale, const float4& _OtherPos, const float4& _OtherScale, int _TransColor)
+{
+	HDC CopyImageDC = _CopyTexture->GetImageDC();
+
+	TransparentBlt(ImageDC,
+		_Pos.iX() - _Scale.ihX(),
+		_Pos.iY() - _Scale.ihY(),
+		_Scale.iX(),
+		_Scale.iY(),
+		CopyImageDC,
+		_OtherPos.iX(), // 카피하려는 이미지의 왼쪽 위 X
+		_OtherPos.iY(), // 카피하려는 이미지의 왼쪽 위 Y
+		_OtherScale.iX(), // 그부분부터 사이즈 X
+		_OtherScale.iY(), // 그부분부터 사이즈 Y
+		_TransColor
+	);
 }

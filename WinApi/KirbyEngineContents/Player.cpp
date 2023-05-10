@@ -34,6 +34,8 @@ void Player::Start()
 
 	}
 
+	CreateRenderer("Test.Bmp");
+
 	SetPos({ 200, 200 });
 	SetScale({ 100, 100 });
 }
@@ -49,7 +51,7 @@ void Player::Update(float _Delta)
 	float Time = GameEngineTime::MainTimer.GetDeltaTime();
 
 
-	AddPos({ 100.0f* _Delta, 0.0f });
+	//AddPos({ 100.0f* _Delta, 0.0f });
 }
 
 void Player::Render()
@@ -61,7 +63,7 @@ void Player::Render()
 	// 모든건 다 Texture
 	GameEngineWindowTexture* BackBuffer = GameEngineWindow::MainWindow.GetBackBuffer();
 	GameEngineWindowTexture* FindTexture = ResourcesManager::GetInst().FindTexture("Test.Bmp");
-	BackBuffer->BitCopy(FindTexture, GetPos(), GetScale());
+	BackBuffer->TransCopy(FindTexture, GetPos(), { 100, 100 }, {0, 0}, FindTexture->GetScale());
 
 	//HDC WindowDC = GameEngineWindow::MainWindow.GetHDC();
 	//GameEngineTexture* FindTexture = ResourcesManager::GetInst().FindTexture("Test.Bmp");

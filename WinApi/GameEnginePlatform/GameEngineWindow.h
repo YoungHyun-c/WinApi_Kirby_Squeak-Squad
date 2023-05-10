@@ -32,6 +32,11 @@ public:
 		return Scale;
 	}
 
+	GameEngineWindowTexture* GetWindowBuffer()
+	{
+		return WindowBuffer;
+	}
+
 	GameEngineWindowTexture* GetBackBuffer()
 	{
 		return BackBuffer;
@@ -44,6 +49,8 @@ public:
 		IsWindowUpdate = false;
 	}
 
+	void DoubleBuffering();
+
 protected:
 
 private:
@@ -53,6 +60,8 @@ private:
 	HWND hWnd = nullptr;
 
 	float4 Scale;
+	GameEngineWindowTexture* WindowBuffer = nullptr;
+
 	GameEngineWindowTexture* BackBuffer = nullptr;
 
 	// 2차원 배열형식의 색깔들의 집합이 존재하고
