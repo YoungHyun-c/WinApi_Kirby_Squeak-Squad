@@ -52,9 +52,15 @@ public:
 		return IsDeathValue;
 	}
 
+	void SetOrder(int _Order)
+	{
+		Order = _Order;
+	}
+
 protected:
 
 private:
+	int Order = 0;
 	bool IsUpdateValue = true; // 이걸 false로 만들면 된다.
 	bool IsDeathValue = false; // 아예 메모리에서 없애고 싶으면 쓰면 된다.
 };

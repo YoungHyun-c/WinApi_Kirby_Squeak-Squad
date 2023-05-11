@@ -56,7 +56,18 @@ public:
 		return { hX(), hY(), Z, W };
 	}
 
-	float4& operator+(const float4& _Other)
+	float4 operator-(const float4& _Other)
+	{
+		float4 ReturnValue;
+
+		ReturnValue.X = X - _Other.X;
+		ReturnValue.Y = Y - _Other.Y;
+		ReturnValue.Z = Z - _Other.Z;
+
+		return ReturnValue;
+	}
+
+	float4 operator+(const float4& _Other)
 	{
 		float4 ReturnValue;
 
@@ -67,7 +78,7 @@ public:
 		return ReturnValue;
 	}
 
-	float4& operator*(const float4& _Other)
+	float4 operator*(const float4& _Other)
 	{
 		float4 ReturnValue;
 
@@ -84,6 +95,15 @@ public:
 		Y += _Other.Y;
 		Z += _Other.Z;
 		
+		return *this;
+	}
+
+	float4& operator-=(const float4& _Other)
+	{
+		X -= _Other.X;
+		Y -= _Other.Y;
+		Z -= _Other.Z;
+		  
 		return *this;
 	}
 
