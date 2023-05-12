@@ -53,6 +53,7 @@ void Player::Start()
 
 		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("Test.bmp"));
 		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("HPBar.bmp"));
+		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("Star.bmp"));
 	}
 
 	{
@@ -111,7 +112,7 @@ void Player::Update(float _Delta)
 	if (0 != GetAsyncKeyState('F'))
 	{
 		Bullet* NewBullet = GetLevel()->CreateActor<Bullet>();
-		NewBullet->Renderer->SetTexture("Test.Bmp");
+		NewBullet->Renderer->SetTexture("Star.Bmp");
 		// 방향을 표현하는 xy는 크기가 1이어야 한다.
 		NewBullet->SetDir(float4::RIGHT);
 		NewBullet->SetPos(GetPos());
