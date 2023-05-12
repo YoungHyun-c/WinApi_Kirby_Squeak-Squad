@@ -9,6 +9,7 @@
 #include <GameEngineCore/GameEngineRenderer.h>
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore/GameEngineCamera.h>
+#include "Bullet.h"
 
 Player::Player()
 {
@@ -105,6 +106,15 @@ void Player::Update(float _Delta)
 	if (0 != GetAsyncKeyState('S'))
 	{
 		MovePos = { 0.0f, Speed * _Delta };
+	}
+
+	if (0 != GetAsyncKeyState('F'))
+	{
+		Bullet* NewBullet = GetLevel()->CreateActor<Bullet>();
+		NewBullet->Renderer->SetTexture("Test.Bmp");
+		// 방향을 표현하는 xy는 크기가 1이어야 한다.
+		NewBullet->SetDir(float4::RIGHT);
+		NewBullet->SetPos(GetPos());
 	}
 
 	AddPos(MovePos);

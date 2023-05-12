@@ -53,3 +53,8 @@ void GameEngineRenderer::Render(GameEngineCamera* _Camera)
 
 	BackBuffer->TransCopy(Texture, Master->GetPos() + RenderPos - _Camera->GetPos(), RenderScale, CopyPos, CopyScale);
 }
+
+bool GameEngineRenderer::IsDeath()
+{
+	return true == GameEngineObject::IsDeath() || Master->IsDeath();
+}

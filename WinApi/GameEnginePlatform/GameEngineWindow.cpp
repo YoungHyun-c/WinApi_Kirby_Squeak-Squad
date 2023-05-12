@@ -173,10 +173,10 @@ void GameEngineWindow::MessageLoop(HINSTANCE _Inst, void(*_Start)(HINSTANCE), vo
         // 프레임과 데드타임이 완성됐다.
         if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
         {
-            if (nullptr != _Update)
+            /*if (nullptr != _Update)
             {
                 _Update();
-            }
+            }*/
 
             TranslateMessage(&msg);
             DispatchMessage(&msg);

@@ -1,9 +1,30 @@
 #pragma once
 #include <Windows.h>
+#include <map>
+#include <string>
 
 // Ό³Έν :
 class GameEngineInput
 {
+private:
+	class GameEngineKey
+	{
+		bool Down = false;
+		bool Press = false;
+		bool Up = false;
+		bool Free = true;
+
+		float PressTime = 0.0f;
+
+		int Key = -1;
+
+		bool KeyCheck()
+		{
+			return 0 != GetAsyncKeyState(Key);
+		}
+
+		void Update(float _DeltaTime);
+	};
 public:
 	// constructer destructer
 	GameEngineInput();
@@ -18,6 +39,6 @@ public:
 protected:
 
 private:
-
+	static std::map<std::string, GameEngineKey>AllKeys;
 };
 

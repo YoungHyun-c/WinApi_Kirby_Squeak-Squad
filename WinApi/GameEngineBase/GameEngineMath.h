@@ -9,6 +9,10 @@ class float4
 {
 public:
 	static const float4 ZERO;
+	static const float4 LEFT;
+	static const float4 RIGHT;
+	static const float4 UP;
+	static const float4 DOWN;
 	// 실수는 기본적으로 1.0f == 1.0f (맞다고는 나옴)
 	// == 이 거의 불가능하다.
 	// 해도 정확하지 않는다. 실수를 처리하는 방식이 애초에 정확하지 않기 때문이다.
@@ -85,6 +89,17 @@ public:
 		ReturnValue.X = X * _Other.X;
 		ReturnValue.Y = Y * _Other.Y;
 		ReturnValue.Z = Z * _Other.Z;
+
+		return ReturnValue;
+	}
+
+	float4 operator*(const float _Value)
+	{
+		float4 ReturnValue;
+
+		ReturnValue.X = X * _Value;
+		ReturnValue.Y = Y * _Value;
+		ReturnValue.Z = Z * _Value;
 
 		return ReturnValue;
 	}
