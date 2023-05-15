@@ -10,6 +10,7 @@
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore/GameEngineCamera.h>
 #include "Bullet.h"
+#include <GameEnginePlatform/GameEngineInput.h>
 
 Player::Player()
 {
@@ -68,7 +69,7 @@ void Player::Start()
 		Ptr->SetTexture("HPBar.Bmp");
 	}
 
-	float4 WinScale = GameEngineWindow::MainWindow.GetSCale();
+	float4 WinScale = GameEngineWindow::MainWindow.GetScale();
 	// GetLevel()->GetMainCamera()->SetPos({ -WinScale.hX(), -WinScale.hY() });
 	SetPos(WinScale.Half());
 	// GetLevel()->GetMainCamera()->SetPos({ -WinScale.hX(), -WinScale.hY() });
@@ -87,11 +88,28 @@ void Player::Update(float _Delta)
 
 	AddPos({ 100.0f* _Delta, 0.0f });*/
 
-	float Speed = 200.0f;
+	float Speed = 1000.0f;
 
 	float4 MovePos = float4::ZERO;
 
-	if (0 != GetAsyncKeyState('A'))
+	if (true == GameEngineInput::IsPress('A'))
+	{
+		MovePos = { -Speed * _Delta, 0.0f };
+	}
+	if (true == GameEngineInput::IsPress('D'))
+	{
+		MovePos = { Speed * _Delta, 0.0f };
+	}
+	if (true == GameEngineInput::IsPress('W'))
+	{
+		MovePos = {0.0f ,  -Speed * _Delta };
+	}
+	if (true == GameEngineInput::IsPress('S'))
+	{
+		MovePos = { 0.0f , Speed * _Delta };
+	}
+
+	/*if (0 != GetAsyncKeyState('A'))
 	{
 		MovePos = { -Speed * _Delta, 0.0f };
 	}
@@ -106,10 +124,14 @@ void Player::Update(float _Delta)
 	if (0 != GetAsyncKeyState('S'))
 	{
 		MovePos = { 0.0f, Speed * _Delta };
-	}
+	}*/
 
-	if (0 != GetAsyncKeyState('F'))
+	
+	//if (0 != GetAsyncKeyState('F'))
+	if (true == GameEngineInput::IsUp(VK_LBUTTON))
 	{
+		float4 Pos = GameEngineWindow::MainWindow.GetMousePos();
+
 		Bullet* NewBullet = GetLevel()->CreateActor<Bullet>();
 		NewBullet->Renderer->SetTexture("Test.Bmp");
 		// 방향을 표현하는 xy는 크기가 1이어야 한다.

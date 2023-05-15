@@ -1,5 +1,7 @@
 #include "Bullet.h"
 #include <GameEngineCore/GameEngineRenderer.h>
+#include <GameEngineCore/GameEngineCore.h>
+
 
 Bullet::Bullet()
 {
@@ -16,11 +18,17 @@ void Bullet::Start()
 
 void Bullet::Update(float _Delta)
 {
+	// BUllet¿⁄√º∞°
 	AddPos(Dir * _Delta * Speed);
 
 	if (1.0f < GetLiveTime())
 	{
-		Renderer->Death();
+		if (nullptr != Renderer)
+		{
+			// Death();
+			Renderer->Death();
+			Renderer = nullptr;
+		}
 	}
 
 }

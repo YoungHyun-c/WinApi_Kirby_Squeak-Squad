@@ -18,7 +18,7 @@ BackGround::~BackGround()
 
 void BackGround::Start()
 {
-	SetPos({ 640, 360 });
+	SetPos({ 512, 288 });
 }
 
 void BackGround::Update(float _Delta)
