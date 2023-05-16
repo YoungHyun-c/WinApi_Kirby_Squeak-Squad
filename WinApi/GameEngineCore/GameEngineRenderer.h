@@ -74,7 +74,7 @@ private:
 	class Animation
 	{
 	public:
-		GameEngineSprite* Spirte = nullptr;
+		GameEngineSprite* Sprite = nullptr;
 		size_t CurFrame = 0;
 		size_t StartFrame = -1;
 		size_t EndFrame = -1;

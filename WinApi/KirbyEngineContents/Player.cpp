@@ -57,8 +57,8 @@ void Player::Start()
 
 		//ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("Test.bmp"));
 
-		//ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("Kirby.bmp"), 10, 19);
-		ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("Left_Player.bmp"), 5, 17);
+		ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("Kirby.bmp"), 43, 14);
+		//ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("Left_Player.bmp"), 5, 17);
 		
 		//FolderPath.MoveChild("Resources\\Texture\\");
 
@@ -72,10 +72,10 @@ void Player::Start()
 		MainRenderer = CreateRenderer(RenderOrder::Play);
 		MainRenderer->SetRenderScale({ 200, 200 });
 
-		/*MainRenderer->CreateAnimation("Idle", "Kirby.bmp", 0, 1, 0.1f, true);
-		MainRenderer->CreateAnimation("Run", "Kirby.bmp", 10, 19, 0.1f, true);*/
-		MainRenderer->CreateAnimation("Idle", "Left_Player.bmp", 0, 2, 0.1f, true);
-		MainRenderer->CreateAnimation("Run", "Left_Player.bmp", 3, 6, 0.1f, true);
+		MainRenderer->CreateAnimation("Idle", "Kirby.bmp", 0, 1, 0.1f, true);
+		MainRenderer->CreateAnimation("Run", "Kirby.bmp", 10, 19, 0.1f, true);
+		/*MainRenderer->CreateAnimation("Idle", "Left_Player.bmp", 0, 2, 0.1f, true);
+		MainRenderer->CreateAnimation("Run", "Left_Player.bmp", 3, 6, 0.1f, true);*/
 		MainRenderer->ChangeAnimation("Idle");
 		/*GameEngineRenderer* Ptr = CreateRenderer("Test.Bmp", RenderOrder::Play);
 		Ptr->SetRenderScale({ 50, 50 });

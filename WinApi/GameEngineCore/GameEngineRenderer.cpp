@@ -85,7 +85,7 @@ void GameEngineRenderer::Render(GameEngineCamera* _Camera, float _DeltaTime)
 			}
 		}
 
-		Sprite = CurAnimation->Spirte;
+		Sprite = CurAnimation->Sprite;
 		const GameEngineSprite::Sprite& SpriteInfo = Sprite->GetSprite(CurAnimation->CurFrame);
 		Texture = SpriteInfo.BaseTexture;
 		SetCopyPos(SpriteInfo.RenderPos);
@@ -146,7 +146,7 @@ void GameEngineRenderer::CreateAnimation(
 
 	GameEngineRenderer::Animation Animation = AllAnimation[UpperName];
 
-	Animation.Spirte = Sprite;
+	Animation.Sprite = Sprite;
 	Animation.Inter = _Inter;
 
 	if (_Start != -1)
@@ -164,7 +164,7 @@ void GameEngineRenderer::CreateAnimation(
 	}
 	else
 	{
-		Animation.EndFrame = Animation.Spirte->GetSpriteCount() - 1;
+		Animation.EndFrame = Animation.Sprite->GetSpriteCount() - 1;
 	}
 
 	Animation.Loop = _Loop;
