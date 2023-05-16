@@ -50,17 +50,36 @@ void Player::Start()
 		GameEnginePath FilePath;
 		FilePath.GetCurrentPath();
 		FilePath.MoveParentToExistsChild("Resource");
+
+		//GameEnginePath FolderPath = FilePath;
+
 		FilePath.MoveChild("Resource\\Kirby\\");
 
-		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("Test.bmp"));
+		//ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("Test.bmp"));
+
+		//ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("Kirby.bmp"), 10, 19);
+		ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("Left_Player.bmp"), 5, 17);
+		
+		//FolderPath.MoveChild("Resources\\Texture\\");
+
+		//ResourcesManager::GetInst().CreateSpriteFolder("FolderPlayer", FolderPath.PlusFilePath("FolderPlayer"));
+		
 		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("HPBar.bmp"));
 		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("Star.bmp"));
 	}
 
 	{
-		GameEngineRenderer* Ptr = CreateRenderer("Test.Bmp", RenderOrder::Play);
+		MainRenderer = CreateRenderer(RenderOrder::Play);
+		MainRenderer->SetRenderScale({ 200, 200 });
+
+		/*MainRenderer->CreateAnimation("Idle", "Kirby.bmp", 0, 1, 0.1f, true);
+		MainRenderer->CreateAnimation("Run", "Kirby.bmp", 10, 19, 0.1f, true);*/
+		MainRenderer->CreateAnimation("Idle", "Left_Player.bmp", 0, 2, 0.1f, true);
+		MainRenderer->CreateAnimation("Run", "Left_Player.bmp", 3, 6, 0.1f, true);
+		MainRenderer->ChangeAnimation("Idle");
+		/*GameEngineRenderer* Ptr = CreateRenderer("Test.Bmp", RenderOrder::Play);
 		Ptr->SetRenderScale({ 50, 50 });
-		Ptr->SetTexture("Test.Bmp");
+		Ptr->SetTexture("Test.Bmp");*/
 	}
 
 	{
@@ -89,6 +108,10 @@ void Player::Update(float _Delta)
 
 	AddPos({ 100.0f* _Delta, 0.0f });*/
 
+	//static float Frame = 0.0f;
+	//Frame += Delta *= 10.0f;
+	//MainRenderer->SetSprite("Left_Player.bmp", (int)Frame);
+
 	float Speed = 1000.0f;
 
 	float4 MovePos = float4::ZERO;
@@ -108,6 +131,15 @@ void Player::Update(float _Delta)
 	if (true == GameEngineInput::IsPress('S'))
 	{
 		MovePos = { 0.0f , Speed * _Delta };
+	}
+
+	if (MovePos.X != 0.0f || MovePos.Y != 0.0f)
+	{
+		MainRenderer->ChangeAnimation("Run");
+	}
+	else
+	{
+		MainRenderer->ChangeAnimation("Idle");
 	}
 
 	/*if (0 != GetAsyncKeyState('A'))
