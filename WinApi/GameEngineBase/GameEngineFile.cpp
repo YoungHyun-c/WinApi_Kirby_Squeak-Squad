@@ -9,3 +9,9 @@ GameEngineFile::~GameEngineFile()
 {
 
 }
+
+GameEngineFile::GameEngineFile(const std::string& _path)
+	: GameEnginePath(_path)
+{
+
+}

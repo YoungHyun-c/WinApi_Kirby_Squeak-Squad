@@ -49,6 +49,11 @@ public:
 		CopyScale = _Value;
 	}
 
+	void SetScaleRatio(const float& _Scale)
+	{
+		ScaleRatio = _Scale;
+	}
+
 	void SetRenderScaleToTexture();
 
 	bool IsDeath() override;
@@ -59,6 +64,8 @@ private:
 	GameEngineActor* Master = nullptr;
 	GameEngineWindowTexture* Texture = nullptr;
 	GameEngineSprite* Sprite = nullptr;
+
+	float ScaleRatio = 1.0f;
 	
 	bool ScaleCheck = false;
 

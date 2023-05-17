@@ -48,20 +48,21 @@ void Player::Start()
 	if (false == ResourcesManager::GetInst().IsLoadTexture("Test.Bmp"))
 	{
 		GameEnginePath FilePath;
-		FilePath.GetCurrentPath();
+		FilePath.SetCurrentPath();
 		FilePath.MoveParentToExistsChild("Resource");
 
-		//GameEnginePath FolderPath = FilePath;
+		GameEnginePath FolderPath = FilePath;
 
 		FilePath.MoveChild("Resource\\Kirby\\");
 
 		//ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("Test.bmp"));
 
-		ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("Kirby.bmp"), 43, 14);
+		ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("Kirby.bmp"), 42, 14);
+		/*ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("Left_Kirby.bmp"), 42, 14);
+		ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("Right_Kirby.bmp"), 42, 14)*/;
 		//ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("Left_Player.bmp"), 5, 17);
 		
 		//FolderPath.MoveChild("Resources\\Texture\\");
-
 		//ResourcesManager::GetInst().CreateSpriteFolder("FolderPlayer", FolderPath.PlusFilePath("FolderPlayer"));
 		
 		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("HPBar.bmp"));
@@ -70,13 +71,20 @@ void Player::Start()
 
 	{
 		MainRenderer = CreateRenderer(RenderOrder::Play);
-		MainRenderer->SetRenderScale({ 200, 200 });
+		//MainRenderer->SetRenderScale({ 200, 200 });
 
 		MainRenderer->CreateAnimation("Idle", "Kirby.bmp", 0, 1, 0.1f, true);
 		MainRenderer->CreateAnimation("Run", "Kirby.bmp", 10, 19, 0.1f, true);
+
+		//MainRenderer->CreateAnimation("Left_Idle", "Kirby.bmp", 0, 1, 0.1f, true);
+		//MainRenderer->CreateAnimation("Right_Idle", "Kirby.bmp", 0, 1, 0.1f, true);
+
+		//MainRenderer->CreateAnimation("Left_Run", "Kirby.bmp", 10, 19, 0.1f, true);
+		//MainRenderer->CreateAnimation("Right_Run", "Kirby.bmp", 10, 19, 0.1f, true);
 		/*MainRenderer->CreateAnimation("Idle", "Left_Player.bmp", 0, 2, 0.1f, true);
 		MainRenderer->CreateAnimation("Run", "Left_Player.bmp", 3, 6, 0.1f, true);*/
 		MainRenderer->ChangeAnimation("Idle");
+		MainRenderer->SetRenderScaleToTexture();
 		/*GameEngineRenderer* Ptr = CreateRenderer("Test.Bmp", RenderOrder::Play);
 		Ptr->SetRenderScale({ 50, 50 });
 		Ptr->SetTexture("Test.Bmp");*/
@@ -89,14 +97,17 @@ void Player::Start()
 		Ptr->SetTexture("HPBar.Bmp");
 	}
 
-	float4 WinScale = GameEngineWindow::MainWindow.GetScale();
-	// GetLevel()->GetMainCamera()->SetPos({ -WinScale.hX(), -WinScale.hY() });
-	SetPos(WinScale.Half());
+	ChangeState(PlayerState::Idle);
+	//float4 WinScale = GameEngineWindow::MainWindow.GetScale();
+	//// GetLevel()->GetMainCamera()->SetPos({ -WinScale.hX(), -WinScale.hY() });
+	//SetPos(WinScale.Half());
 	// GetLevel()->GetMainCamera()->SetPos({ -WinScale.hX(), -WinScale.hY() });
 }
 
 void Player::Update(float _Delta)
 {
+
+	StateUpdate(_Delta);
 	// 아주 어리석은 짓 절대로 아마 안될 계산을 하는것이다.
 	// Player->GetPos() == Monster->GetPos();
 	// float Time = GameEngineTime::MainTimer.GetDeltaTime();
@@ -112,68 +123,68 @@ void Player::Update(float _Delta)
 	//Frame += Delta *= 10.0f;
 	//MainRenderer->SetSprite("Left_Player.bmp", (int)Frame);
 
-	float Speed = 1000.0f;
+	//float Speed = 1000.0f;
 
-	float4 MovePos = float4::ZERO;
+	//float4 MovePos = float4::ZERO;
 
-	if (true == GameEngineInput::IsPress('A'))
-	{
-		MovePos = { -Speed * _Delta, 0.0f };
-	}
-	if (true == GameEngineInput::IsPress('D'))
-	{
-		MovePos = { Speed * _Delta, 0.0f };
-	}
-	if (true == GameEngineInput::IsPress('W'))
-	{
-		MovePos = {0.0f ,  -Speed * _Delta };
-	}
-	if (true == GameEngineInput::IsPress('S'))
-	{
-		MovePos = { 0.0f , Speed * _Delta };
-	}
+	//if (true == GameEngineInput::IsPress('A'))
+	//{
+	//	MovePos = { -Speed * _Delta, 0.0f };
+	//}
+	//if (true == GameEngineInput::IsPress('D'))
+	//{
+	//	MovePos = { Speed * _Delta, 0.0f };
+	//}
+	//if (true == GameEngineInput::IsPress('W'))
+	//{
+	//	MovePos = {0.0f ,  -Speed * _Delta };
+	//}
+	//if (true == GameEngineInput::IsPress('S'))
+	//{
+	//	MovePos = { 0.0f , Speed * _Delta };
+	//}
 
-	if (MovePos.X != 0.0f || MovePos.Y != 0.0f)
-	{
-		MainRenderer->ChangeAnimation("Run");
-	}
-	else
-	{
-		MainRenderer->ChangeAnimation("Idle");
-	}
+	//if (MovePos.X != 0.0f || MovePos.Y != 0.0f)
+	//{
+	//	MainRenderer->ChangeAnimation("Run");
+	//}
+	//else
+	//{
+	//	MainRenderer->ChangeAnimation("Idle");
+	//}
 
-	/*if (0 != GetAsyncKeyState('A'))
-	{
-		MovePos = { -Speed * _Delta, 0.0f };
-	}
-	if (0 != GetAsyncKeyState('D'))
-	{
-		MovePos = { Speed * _Delta, 0.0f };
-	}
-	if (0 != GetAsyncKeyState('W'))
-	{
-		MovePos = { 0.0f, -Speed * _Delta };
-	}
-	if (0 != GetAsyncKeyState('S'))
-	{
-		MovePos = { 0.0f, Speed * _Delta };
-	}*/
+	///*if (0 != GetAsyncKeyState('A'))
+	//{
+	//	MovePos = { -Speed * _Delta, 0.0f };
+	//}
+	//if (0 != GetAsyncKeyState('D'))
+	//{
+	//	MovePos = { Speed * _Delta, 0.0f };
+	//}
+	//if (0 != GetAsyncKeyState('W'))
+	//{
+	//	MovePos = { 0.0f, -Speed * _Delta };
+	//}
+	//if (0 != GetAsyncKeyState('S'))
+	//{
+	//	MovePos = { 0.0f, Speed * _Delta };
+	//}*/
 
-	
-	//if (0 != GetAsyncKeyState('F'))
-	if (true == GameEngineInput::IsUp(VK_LBUTTON))
-	{
-		float4 Pos = GameEngineWindow::MainWindow.GetMousePos();
+	//
+	////if (0 != GetAsyncKeyState('F'))
+	//if (true == GameEngineInput::IsUp(VK_LBUTTON))
+	//{
+	//	float4 Pos = GameEngineWindow::MainWindow.GetMousePos();
 
-		Bullet* NewBullet = GetLevel()->CreateActor<Bullet>();
-		NewBullet->Renderer->SetTexture("Star.Bmp");
-		// 방향을 표현하는 xy는 크기가 1이어야 한다.
-		NewBullet->SetDir(float4::RIGHT);
-		NewBullet->SetPos(GetPos());
-	}
+	//	Bullet* NewBullet = GetLevel()->CreateActor<Bullet>();
+	//	NewBullet->Renderer->SetTexture("Star.Bmp");
+	//	// 방향을 표현하는 xy는 크기가 1이어야 한다.
+	//	NewBullet->SetDir(float4::RIGHT);
+	//	NewBullet->SetPos(GetPos());
+	//}
 
-	AddPos(MovePos);
-	GetLevel()->GetMainCamera()->AddPos(MovePos);
+	//AddPos(MovePos);
+	//GetLevel()->GetMainCamera()->AddPos(MovePos);
 }
 
 void Player::Render()
@@ -207,7 +218,36 @@ void Player::Render()
 
 }
 
-void Player::Release()
+void Player::StateUpdate(float _Delta)
 {
+	switch (State)
 
+	{
+	case PlayerState::Idle:
+		return IdleUpdate(_Delta);
+	case PlayerState::Run:
+		return RunUpdate(_Delta);
+	default:
+		break;
+	}
+}
+
+void Player::ChangeState(PlayerState _State)
+{
+	if (_State != State)
+
+	{
+		switch (_State)
+
+		{
+		case PlayerState::Idle:
+			break;
+		case PlayerState::Run:
+			break;
+		default:
+			break;
+		}
+	}
+
+	State = _State;
 }

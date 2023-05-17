@@ -1,6 +1,13 @@
 #pragma once
 #include <GameEngineCore/GameEngineActor.h>
 
+enum class PlayerState
+{
+	Idle,
+	Run,
+	Max, // 일반적으로 사용하지 않는 값.
+};
+
 // 설명 :
 class Player : public GameEngineActor
 {
@@ -18,11 +25,18 @@ public:
 	GameEngineRenderer* MainRenderer = nullptr;
 
 protected:
+	void StateUpdate(float _Delta);
+	void IdleStart();
+	void RunStart();
+	//클래스로 만들어도 되고
+	void IdleUpdate(float _Delta);
+	void RunUpdate(float _Delta);
+	void ChangeState(PlayerState State);
+	PlayerState State = PlayerState::Max;
 
 private:
 	void Start() override;
 	void Update(float _Delta) override;
 	void Render() override;
-	void Release() override;
 };
 

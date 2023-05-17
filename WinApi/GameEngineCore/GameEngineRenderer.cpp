@@ -11,12 +11,10 @@
 
 GameEngineRenderer::GameEngineRenderer()
 {
-
 }
 
 GameEngineRenderer::~GameEngineRenderer()
 {
-
 }
 
 void GameEngineRenderer::SetSprite(const std::string& _Name, size_t _Index/*=0*/)
@@ -57,7 +55,10 @@ void GameEngineRenderer::SetTexture(const std::string& _Name)
 
 void GameEngineRenderer::SetRenderScaleToTexture()
 {
-	RenderScale = Texture->GetScale();
+	if (nullptr != Texture)
+	{
+		RenderScale = Texture->GetScale();
+	}
 	ScaleCheck = false;
 }
 
@@ -90,6 +91,11 @@ void GameEngineRenderer::Render(GameEngineCamera* _Camera, float _DeltaTime)
 		Texture = SpriteInfo.BaseTexture;
 		SetCopyPos(SpriteInfo.RenderPos);
 		SetCopyScale(SpriteInfo.RenderScale);
+
+		if (false == ScaleCheck)
+		{
+			SetRenderScale(SpriteInfo.RenderScale * ScaleRatio);
+		}
 
 	}
 	if (nullptr == Texture)
@@ -144,7 +150,7 @@ void GameEngineRenderer::CreateAnimation(
 		return;
 	}
 
-	GameEngineRenderer::Animation Animation = AllAnimation[UpperName];
+	GameEngineRenderer::Animation& Animation = AllAnimation[UpperName];
 
 	Animation.Sprite = Sprite;
 	Animation.Inter = _Inter;
