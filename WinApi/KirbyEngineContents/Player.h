@@ -8,6 +8,13 @@ enum class PlayerState
 	Max, // 일반적으로 사용하지 않는 값.
 };
 
+enum class PlayerDir
+{
+	Right,
+	Left,
+	Max,
+};
+
 // 설명 :
 class Player : public GameEngineActor
 {
@@ -33,6 +40,12 @@ protected:
 	void RunUpdate(float _Delta);
 	void ChangeState(PlayerState State);
 	PlayerState State = PlayerState::Max;
+	PlayerDir Dir = PlayerDir::Right;
+	std::string CurState = "";
+
+	void DirCheck();
+
+	void ChangeAnimationState(const std::string& _StateName);
 
 private:
 	void Start() override;

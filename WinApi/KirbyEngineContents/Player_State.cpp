@@ -6,12 +6,14 @@
 
 void Player::IdleStart()
 {
-	MainRenderer->ChangeAnimation("Right_Idle");
+	ChangeAnimationState("Idle");
+	//MainRenderer->ChangeAnimation("Right_Idle");
 }
 
 void Player::RunStart()
 {
-	MainRenderer->ChangeAnimation("Right_Run");
+	ChangeAnimationState("Run");
+	//MainRenderer->ChangeAnimation("Right_Run");
 }
 
 void Player::IdleUpdate(float _Delta)
@@ -22,6 +24,7 @@ void Player::IdleUpdate(float _Delta)
 		|| true == GameEngineInput::IsDown('D')
 		)
 	{
+		DirCheck();
 		ChangeState(PlayerState::Run);
 		return;
 	}
@@ -35,15 +38,17 @@ void Player::IdleUpdate(float _Delta)
 
 void Player::RunUpdate(float _Delta)
 {
+	DirCheck();
+
 	float Speed = 1000.0f;
 
 	float4 MovePos = float4::ZERO;
 
-	if (true == GameEngineInput::IsPress('A'))
+	if (true == GameEngineInput::IsPress('A') && Dir == PlayerDir::Left)
 	{
 		MovePos = { -Speed * _Delta, 0.0f };
 	}
-	if (true == GameEngineInput::IsPress('D'))
+	else if (true == GameEngineInput::IsPress('D') && Dir == PlayerDir::Right)
 	{
 		MovePos = { Speed * _Delta, 0.0f };
 	}
@@ -58,6 +63,7 @@ void Player::RunUpdate(float _Delta)
 
 	if (MovePos == float4::ZERO)
 	{
+		DirCheck();
 		ChangeState(PlayerState::Idle);
 	}
 

@@ -70,6 +70,9 @@ public:
 
 	bool IsLoadTexture(const std::string& _Image);
 
+	void TextureFileLoad(const std::string& _FileName, const std::string& _Path);
+	void SpriteFileLoad(const std::string& _FileName, const std::string& _Path, int _XCount, int _YCount);
+
 protected:
 
 private:

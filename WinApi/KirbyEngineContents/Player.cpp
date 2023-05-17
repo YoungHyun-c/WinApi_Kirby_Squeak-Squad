@@ -57,10 +57,11 @@ void Player::Start()
 
 		//ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("Test.bmp"));
 
-		ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("Kirby.bmp"), 42, 14);
-		/*ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("Left_Kirby.bmp"), 42, 14);
-		ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("Right_Kirby.bmp"), 42, 14)*/;
+		ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("KirbyTest.bmp"), 42, 1);
+		//ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("Left_Kirby.bmp"), 42, 14);
+		//ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("Right_Kirby.bmp"), 42, 14);
 		//ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("Left_Player.bmp"), 5, 17);
+		//ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("Right_Player.bmp"), 5, 17);
 		
 		//FolderPath.MoveChild("Resources\\Texture\\");
 		//ResourcesManager::GetInst().CreateSpriteFolder("FolderPlayer", FolderPath.PlusFilePath("FolderPlayer"));
@@ -73,19 +74,29 @@ void Player::Start()
 		MainRenderer = CreateRenderer(RenderOrder::Play);
 		//MainRenderer->SetRenderScale({ 200, 200 });
 
-		MainRenderer->CreateAnimation("Idle", "Kirby.bmp", 0, 1, 0.1f, true);
-		MainRenderer->CreateAnimation("Run", "Kirby.bmp", 10, 19, 0.1f, true);
+		MainRenderer->CreateAnimation("Left_Idle", "KirbyTest.bmp", 0, 1, 0.1f, true);
+		MainRenderer->CreateAnimation("Left_Run", "KirbyTest.bmp", 10, 19, 0.1f, true);
+		MainRenderer->CreateAnimation("Right_Idle", "KirbyTest.bmp", 0, 1, 0.1f, true);
+		MainRenderer->CreateAnimation("Right_Run", "KirbyTest.bmp", 10, 19, 0.1f, true);
+
+		/*MainRenderer->CreateAnimation("Idle", "Kirby.bmp", 0, 1, 0.1f, true);
+		MainRenderer->CreateAnimation("Run", "Kirby.bmp", 10, 19, 0.1f, true);*/
 
 		//MainRenderer->CreateAnimation("Left_Idle", "Kirby.bmp", 0, 1, 0.1f, true);
 		//MainRenderer->CreateAnimation("Right_Idle", "Kirby.bmp", 0, 1, 0.1f, true);
 
 		//MainRenderer->CreateAnimation("Left_Run", "Kirby.bmp", 10, 19, 0.1f, true);
 		//MainRenderer->CreateAnimation("Right_Run", "Kirby.bmp", 10, 19, 0.1f, true);
-		/*MainRenderer->CreateAnimation("Idle", "Left_Player.bmp", 0, 2, 0.1f, true);
-		MainRenderer->CreateAnimation("Run", "Left_Player.bmp", 3, 6, 0.1f, true);*/
-		MainRenderer->ChangeAnimation("Idle");
+		//MainRenderer->CreateAnimation("Left_Idle", "Left_Player.bmp", 0, 2, 0.1f, true);
+		//MainRenderer->CreateAnimation("Right_Idle", "Right_Player.bmp", 0, 2, 0.1f, true);
+
+		//MainRenderer->CreateAnimation("Left_Run", "Left_Player.bmp", 3, 6, 0.1f, true);
+		//MainRenderer->CreateAnimation("Right_Run", "Right_Player.bmp", 3, 6, 0.1f, true);
+		//MainRenderer->ChangeAnimation("Idle");
+		MainRenderer->ChangeAnimation("Left_Idle");
 		MainRenderer->SetRenderScaleToTexture();
 		/*GameEngineRenderer* Ptr = CreateRenderer("Test.Bmp", RenderOrder::Play);
+* 
 		Ptr->SetRenderScale({ 50, 50 });
 		Ptr->SetTexture("Test.Bmp");*/
 	}
@@ -98,6 +109,7 @@ void Player::Start()
 	}
 
 	ChangeState(PlayerState::Idle);
+	Dir = PlayerDir::Right;
 	//float4 WinScale = GameEngineWindow::MainWindow.GetScale();
 	//// GetLevel()->GetMainCamera()->SetPos({ -WinScale.hX(), -WinScale.hY() });
 	//SetPos(WinScale.Half());
@@ -108,6 +120,9 @@ void Player::Update(float _Delta)
 {
 
 	StateUpdate(_Delta);
+
+	// Gravity(); 항상 적용 되면 안됨.
+	
 	// 아주 어리석은 짓 절대로 아마 안될 계산을 하는것이다.
 	// Player->GetPos() == Monster->GetPos();
 	// float Time = GameEngineTime::MainTimer.GetDeltaTime();
@@ -235,14 +250,15 @@ void Player::StateUpdate(float _Delta)
 void Player::ChangeState(PlayerState _State)
 {
 	if (_State != State)
-
 	{
 		switch (_State)
 
 		{
 		case PlayerState::Idle:
+			IdleStart();
 			break;
 		case PlayerState::Run:
+			RunStart();
 			break;
 		default:
 			break;
@@ -250,4 +266,56 @@ void Player::ChangeState(PlayerState _State)
 	}
 
 	State = _State;
+}
+
+void Player::DirCheck()
+{
+	PlayerDir CheckDir = PlayerDir::Max;
+
+	if (true == GameEngineInput::IsDown('A'))
+	{
+		CheckDir = PlayerDir::Left;
+	}
+	else if (true == GameEngineInput::IsDown('D'))
+	{
+		CheckDir = PlayerDir::Right;
+	}
+
+	bool ChangeDir = false;
+
+	if (CheckDir != PlayerDir::Max)
+	{
+		Dir = CheckDir;
+		ChangeDir = true;
+	}
+
+	if (CheckDir != PlayerDir::Max && true == ChangeDir)
+	{
+		ChangeAnimationState(CurState);
+	}
+}
+
+void Player::ChangeAnimationState(const std::string& _StateName)
+{
+	// "Idle"
+	// _StateName
+
+	std::string AnimationName;
+
+	switch (Dir)
+	{
+	case PlayerDir::Right:
+		AnimationName = "Right_";
+		break;
+	case PlayerDir::Left:
+		AnimationName = "Left_";
+		break;
+	default:
+		break;
+	}
+	AnimationName += _StateName;
+
+	CurState = _StateName;
+
+	MainRenderer->ChangeAnimation(AnimationName);
 }
