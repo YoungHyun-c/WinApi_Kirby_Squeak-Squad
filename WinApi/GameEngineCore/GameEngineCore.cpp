@@ -37,9 +37,13 @@ void GameEngineCore::CoreUpdate()
 	{
 		if (nullptr != CurLevel)
 		{
-			CurLevel = NextLevel;
+			CurLevel->LevelEnd(NextLevel);
+			CurLevel->ActorLevelEnd();
 		}
+
 		NextLevel->LevelStart(CurLevel);
+		NextLevel->ActorLevelStart();
+
 		CurLevel = NextLevel;
 		NextLevel = nullptr;
 		GameEngineTime::MainTimer.Reset();
@@ -59,6 +63,7 @@ void GameEngineCore::CoreUpdate()
 	// 한프레임 동안은 절대로 기본적인 세팅의
 	// 변화가 없게 하려고 하는 설계의도가 있는것.
 	// 이걸 호출한 애는 PlayLevel
+	CurLevel->AddLiveTime(Delta);
 	CurLevel->Update(Delta);
 	// TitleLevel
 	CurLevel->ActorUpdate(Delta);

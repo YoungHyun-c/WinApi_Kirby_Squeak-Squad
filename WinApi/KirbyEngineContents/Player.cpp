@@ -10,7 +10,10 @@
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore/GameEngineCamera.h>
 #include "Bullet.h"
+#include "Monster.h"
 #include <GameEnginePlatform/GameEngineInput.h>
+
+Player* Player::MainPlayer = nullptr;
 
 Player::Player()
 {
@@ -118,8 +121,19 @@ void Player::Start()
 
 void Player::Update(float _Delta)
 {
+	if (true == GameEngineInput::IsDown('L'))
+	{
+		Monster::AllMonsterDeath();
+	}
+
+	if (true == GameEngineInput::IsDown('Y'))
+	{
+		GravityOff();
+	}
 
 	StateUpdate(_Delta);
+
+	CameraFocus();
 
 	// Gravity(); 항상 적용 되면 안됨.
 	
@@ -318,4 +332,9 @@ void Player::ChangeAnimationState(const std::string& _StateName)
 	CurState = _StateName;
 
 	MainRenderer->ChangeAnimation(AnimationName);
+}
+
+void Player::LevelStart()
+{
+	MainPlayer = this;
 }

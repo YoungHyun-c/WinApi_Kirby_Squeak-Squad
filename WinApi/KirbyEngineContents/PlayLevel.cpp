@@ -8,6 +8,8 @@
 // Contents
 #include "Player.h"
 #include "BackGround.h"
+#include "Monster.h"
+
 
 PlayLevel::PlayLevel()
 {
@@ -21,6 +23,14 @@ PlayLevel::~PlayLevel()
 
 void PlayLevel::Start()
 {
+	if (false == ResourcesManager::GetInst().IsLoadTexture("Test,Bmp"))
+	{
+		GameEnginePath FilePath;
+		FilePath.SetCurrentPath();
+		FilePath.MoveParentToExistsChild("Resource");
+		FilePath.MoveChild("Resource\\BackGround\\");
+		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("StageTestPixel.bmp"));
+	}
 	// ResourcesManager::GetInst().TextureLoad("AAA.Png", 경로);
 
 	// 플레이 레벨이 만들어졌다.
@@ -46,6 +56,12 @@ void PlayLevel::Update(float _Delta)
 		GameEngineCore::ChangeLevel("TitleLevel");
 	}
 	//GameEngineCore::ChangeLevel("TitleLevel");
+
+	if (1.0f <= GetLiveTime())
+	{
+		Monster* NewMonster = CreateActor<Monster>();
+		ResetLiveTime();
+	}
 }
 
 void PlayLevel::Render()
@@ -65,11 +81,12 @@ void PlayLevel::LevelStart(GameEngineLevel* _PrevLevel)
 		MsgBoxAssert("플레이어를 세팅해주지 않았습니다.");
 	}
 	
-	float4 WinScale = GameEngineWindow::MainWindow.GetScale();
+	LevelPlayer->SetGroundTexture("StageTestPixel.bmp");
+	//float4 WinScale = GameEngineWindow::MainWindow.GetScale();
 	//LevelPlayer->SetPos(WinScale.Half());
 	// 0 0
 	// x y
-	GetMainCamera()->SetPos(LevelPlayer->GetPos() - WinScale.Half());
+	//GetMainCamera()->SetPos(LevelPlayer->GetPos() - WinScale.Half());
 }
 
 void PlayLevel::LevelEnd(GameEngineLevel* _NextLevel)

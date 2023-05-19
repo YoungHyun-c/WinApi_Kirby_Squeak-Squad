@@ -18,6 +18,8 @@ void Player::RunStart()
 
 void Player::IdleUpdate(float _Delta)
 {
+	Gravity(_Delta);
+
 	if (true == GameEngineInput::IsDown('A')
 		|| true == GameEngineInput::IsDown('W')
 		|| true == GameEngineInput::IsDown('S')
@@ -38,6 +40,8 @@ void Player::IdleUpdate(float _Delta)
 
 void Player::RunUpdate(float _Delta)
 {
+	Gravity(_Delta);
+
 	DirCheck();
 
 	float Speed = 1000.0f;

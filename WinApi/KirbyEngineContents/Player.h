@@ -1,5 +1,5 @@
 #pragma once
-#include <GameEngineCore/GameEngineActor.h>
+#include "PlayActor.h"
 
 enum class PlayerState
 {
@@ -16,8 +16,17 @@ enum class PlayerDir
 };
 
 // Ό³Έν :
-class Player : public GameEngineActor
+class Player : public PlayActor
 {
+private:
+	static Player* MainPlayer;
+
+public:
+	static Player* GetMainPlayer()
+	{
+		return MainPlayer;
+	}
+
 public:
 	// constructer destructer
 	Player();
@@ -48,6 +57,7 @@ protected:
 	void ChangeAnimationState(const std::string& _StateName);
 
 private:
+	void LevelStart() override;
 	void Start() override;
 	void Update(float _Delta) override;
 	void Render() override;
