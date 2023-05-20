@@ -16,8 +16,7 @@ TitleLevel::~TitleLevel()
 
 void TitleLevel::Start()
 {
-	BackGround* Back = CreateActor<BackGround>();
-	Back->Init("Title.Bmp");
+
 }
 
 void TitleLevel::Update(float _DeltaTime)

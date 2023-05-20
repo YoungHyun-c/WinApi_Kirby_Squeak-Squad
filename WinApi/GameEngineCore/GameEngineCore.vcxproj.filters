@@ -23,6 +23,9 @@
     <ClInclude Include="GameEngineSprite.h">
       <Filter>Resources</Filter>
     </ClInclude>
+    <ClInclude Include="GameEngineCollision.h">
+      <Filter>Object\Collsion</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEngineCore.cpp" />
@@ -47,6 +50,9 @@
     <ClCompile Include="GameEngineSprite.cpp">
       <Filter>Resources</Filter>
     </ClCompile>
+    <ClCompile Include="GameEngineCollision.cpp">
+      <Filter>Object\Collsion</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Object">
@@ -57,6 +63,9 @@
     </Filter>
     <Filter Include="Object\Rendering">
       <UniqueIdentifier>{35f9afd3-50dd-464b-8204-fd170fe16ae0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Collsion">
+      <UniqueIdentifier>{1df5c811-5923-483c-9652-8b8f91f59b19}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

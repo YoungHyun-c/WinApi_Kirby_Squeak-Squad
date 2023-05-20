@@ -47,7 +47,9 @@ protected:
 	//클래스로 만들어도 되고
 	void IdleUpdate(float _Delta);
 	void RunUpdate(float _Delta);
+
 	void ChangeState(PlayerState State);
+
 	PlayerState State = PlayerState::Max;
 	PlayerDir Dir = PlayerDir::Right;
 	std::string CurState = "";

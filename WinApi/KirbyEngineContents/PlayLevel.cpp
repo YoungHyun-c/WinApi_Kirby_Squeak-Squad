@@ -43,10 +43,14 @@ void PlayLevel::Start()
 	// 이렇게 만들면 자기 임의대로 만들겠다는 것이라 절대 xxxxx
 	// Player* NewPlayer = new Player();
 
-	BackGround* Back = CreateActor<BackGround>();
-	Back->Init("StageTest.Bmp");
+	BackGroundPtr = CreateActor<BackGround>();
+	BackGroundPtr->Init("StageTest.Bmp", "StageTestPixel.bmp");
+	
+	/*BackGround* Back = CreateActor<BackGround>();
+	Back->Init("StageTest.Bmp");*/
 
 	LevelPlayer = CreateActor<Player>();
+	LevelPlayer->SetGroundTexture("StageTestPixel.bmp");
 }
 
 void PlayLevel::Update(float _Delta)
@@ -57,11 +61,15 @@ void PlayLevel::Update(float _Delta)
 	}
 	//GameEngineCore::ChangeLevel("TitleLevel");
 
-	if (1.0f <= GetLiveTime())
+	if (true == GameEngineInput::IsDown('J'))
 	{
-		Monster* NewMonster = CreateActor<Monster>();
-		ResetLiveTime();
+		BackGroundPtr->SwitchRender();
 	}
+	//if (1.0f <= GetLiveTime())
+	//{
+	//	Monster* NewMonster = CreateActor<Monster>();
+	//	ResetLiveTime();
+	//}
 }
 
 void PlayLevel::Render()
