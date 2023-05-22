@@ -7,6 +7,7 @@
 #include "ResourcesManager.h"
 #include "GameEngineActor.h"
 #include "GameEngineSprite.h"
+#include "GameEngineLevel.h"
 #include <math.h>
 
 GameEngineRenderer::GameEngineRenderer()
@@ -231,4 +232,31 @@ void GameEngineRenderer::ChangeAnimation(const std::string& _AnimationName, bool
 		MsgBoxAssert("존재하지 않는 애니메이션으로 체인지 하려고 했습니다." + _AnimationName);
 		return;
 	}
+}
+
+void GameEngineRenderer::Start()
+{
+	Camera = Master->GetLevel()->GetMainCamera();
+}
+
+void GameEngineRenderer::SetOrder(int _Order)
+{
+	if (nullptr == Camera)
+	{
+		MsgBoxAssert("카메라가 세팅되지 않았는데 오더를 지정했습니다.");
+	}
+
+	// 0 => 5번으로 바꾸고 싶다.
+	
+	// 오더를 변경하는건 마구잡이로 쓸만한건 아니다.
+	// 0 번 렌더 그룹
+	// 0 번 그룹에서는 삭제가 된다.
+	std::list<GameEngineRenderer*>& PrevRenders = Camera->Renderers[GetOrder()];
+	PrevRenders.remove(this);
+
+	GameEngineObject::SetOrder(_Order);
+
+	std::list<GameEngineRenderer*>& NextRenders = Camera->Renderers[GetOrder()];
+	NextRenders.push_back(this);
+
 }

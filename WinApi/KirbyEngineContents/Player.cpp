@@ -74,7 +74,8 @@ void Player::Start()
 	}
 
 	{
-		MainRenderer = CreateRenderer(RenderOrder::Play);
+		//MainRenderer = CreateRenderer(RenderOrder::Play);
+		MainRenderer = CreateRenderer(-100);
 		//MainRenderer->SetRenderScale({ 200, 200 });
 
 		//MainRenderer->CreateAnimation("Left_Idle", "KirbyTest.bmp", 0, 1, 0.1f, true);
@@ -129,7 +130,8 @@ void Player::Update(float _Delta)
 
 	if (true == GameEngineInput::IsDown('Y'))
 	{
-		GravityOff();
+		MainRenderer->SetOrder(100);
+		//GravityOff();
 	}
 
 	StateUpdate(_Delta);
