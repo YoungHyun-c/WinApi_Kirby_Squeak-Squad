@@ -88,6 +88,7 @@ private:
 		size_t EndFrame = -1;
 		float CurInter = 0.0f;
 		float Inter = 0.1f;
+		std::vector<size_t> Frames;
 		std::vector<float> Inters;
 		bool Loop = true;
 	};

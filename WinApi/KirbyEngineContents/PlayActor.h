@@ -19,14 +19,14 @@ public:
 
 	void CameraFocus();
 
-	void GravityOff()
-	{
-		IsGravity = false;
-	}
-
 	void GravityReset()
 	{
 		GravityVector = float4::ZERO;
+	}
+
+	void GravityOff()
+	{
+		IsGravity = false;
 	}
 
 	void SetGroundTexture(const std::string& _GroundTextureName);
