@@ -108,6 +108,10 @@ void Player::RunUpdate(float _Delta)
 	{
 		MovePos = { 0.0f, Speed * _Delta };
 	}
+	if (true == GameEngineInput::IsPress(VK_SPACE))
+	{
+		MovePos = { 0.0f, -Speed * _Delta * JumpPower };
+	}
 
 	if (MovePos == float4::ZERO)
 	{

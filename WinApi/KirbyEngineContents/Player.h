@@ -63,5 +63,7 @@ private:
 	void Start() override;
 	void Update(float _Delta) override;
 	void Render() override;
+
+	float JumpPower = 7.0f;
 };
 

@@ -100,6 +100,7 @@ void Player::Start()
 		MainRenderer->SetRenderScaleToTexture();
 		/*GameEngineRenderer* Ptr = CreateRenderer("Test.Bmp", RenderOrder::Play);
 * 
+* 
 		Ptr->SetRenderScale({ 50, 50 });
 		Ptr->SetTexture("Test.Bmp");*/
 	}
