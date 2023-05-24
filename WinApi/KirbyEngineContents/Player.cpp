@@ -77,6 +77,18 @@ void Player::Start()
 	{
 		//MainRenderer = CreateRenderer(RenderOrder::Play);
 		MainRenderer = CreateRenderer(-100);
+
+		//Folder
+		/*MainRenderer->CreateAnimation("Test", "FolderPlayer");
+		MainRenderer->CreateAnimation("Left_Idle", "Left_Player.bmp", 0, 2, 0.1f, true);
+		MainRenderer->CreateAnimation("Right_Idle", "FolderPlayer");
+		MainRenderer->CreateAnimation("Left_Run", "Left_Player.bmp", 3, 6, 0.1f, true);
+		MainRenderer->CreateAnimation("Right_Run", "Right_Player.bmp", 20, 0, 0.1f, true);
+		MainRenderer->ChangeAnimation("Test");
+		MainRenderer->SetRenderScaleToTexture();*/
+		//
+
+
 		//MainRenderer->SetRenderScale({ 200, 200 });
 
 		//MainRenderer->CreateAnimation("Left_Idle", "KirbyTest.bmp", 0, 1, 0.1f, true);
@@ -93,9 +105,9 @@ void Player::Start()
 		//MainRenderer->CreateAnimation("Left_Run", "Kirby.bmp", 10, 19, 0.1f, true);
 		//MainRenderer->CreateAnimation("Right_Run", "Kirby.bmp", 10, 19, 0.1f, true);
 		MainRenderer->CreateAnimation("Left_Idle", "Left_Player.bmp", 0, 2, 0.1f, true);
-		MainRenderer->CreateAnimation("Left_Run", "Left_Player.bmp", 3, 6, 0.1f, true);
-
 		MainRenderer->CreateAnimation("Right_Idle", "Right_Player.bmp", 0, 2, 0.1f, true);
+
+		MainRenderer->CreateAnimation("Left_Run", "Left_Player.bmp", 3, 6, 0.1f, true);
 		MainRenderer->CreateAnimation("Right_Run", "Right_Player.bmp", 10, 0, 0.1f, true);
 		//MainRenderer->ChangeAnimation("Idle");
 		MainRenderer->ChangeAnimation("Left_Idle");
@@ -105,6 +117,7 @@ void Player::Start()
 * 
 		Ptr->SetRenderScale({ 50, 50 });
 		Ptr->SetTexture("Test.Bmp");*/
+
 	}
 
 	{
@@ -117,6 +130,7 @@ void Player::Start()
 	{
 		BodyCollision = CreateCollision(CollisionOrder::PlayerBody);
 		BodyCollision->SetCollisionScale({ 100, 100 });
+		BodyCollision->SetCollisionType(CollisionType::CirCle);
 
 	}
 
@@ -130,6 +144,24 @@ void Player::Start()
 
 void Player::Update(float _Delta)
 {
+	std::vector<GameEngineCollision*> _Col;
+	if (true == BodyCollision->Collision(CollisionOrder::MonsterBody, _Col
+		, CollisionType::CirCle
+		, CollisionType::CirCle
+	))
+	{
+		for (size_t i = 0; i < _Col.size(); i++)
+		{
+			GameEngineCollision* Collision = _Col[i];
+
+			GameEngineActor* Actor = Collision->GetActor();
+
+			Actor->Death();
+		}
+		// 나는 몬스터랑 충돌한거야.
+	}
+
+
 	if (true == GameEngineInput::IsDown('L'))
 	{
 		Monster::AllMonsterDeath();

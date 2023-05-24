@@ -83,15 +83,15 @@ void Player::RunUpdate(float _Delta)
 		}
 	}
 	
-	std::vector<GameEngineCollision*> _Col;
-	if (true == BodyCollision->Collision(CollisionOrder::MonsterBody, _Col
-		, CollisionType::Rect // 나를 사각형
-		, CollisionType::Rect // 상대도 사각형으로 봐줘
-		))
-	{
-		int a = 0;
-		// 나는 몬스터랑 충돌한것.
-	}
+	//std::vector<GameEngineCollision*> _Col;
+	//if (true == BodyCollision->Collision(CollisionOrder::MonsterBody, _Col
+	//	, CollisionType::Rect // 나를 사각형
+	//	, CollisionType::Rect // 상대도 사각형으로 봐줘
+	//	))
+	//{
+	//	int a = 0;
+	//	// 나는 몬스터랑 충돌한것.
+	//}
 
 
 	DirCheck();

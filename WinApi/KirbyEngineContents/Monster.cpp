@@ -61,4 +61,5 @@ void Monster::Start()
 
 	GameEngineCollision* BodyCollision = CreateCollision(CollisionOrder::MonsterBody);
 	BodyCollision->SetCollisionScale({ 100, 100 });
+	BodyCollision->SetCollisionType(CollisionType::CirCle);
 }

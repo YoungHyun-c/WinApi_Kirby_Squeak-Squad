@@ -1,5 +1,5 @@
 #pragma once
-#include "GameEngineObject.h"
+#include "GameEngineActorSubObject.h"
 #include <GameEngineBase/GameEngineMath.h>
 #include <string>
 #include <map>
@@ -10,19 +10,65 @@ enum class CollisionType
 {
 	Point,  // 점
 	Rect,   // 사각형
-	Circle, // 원
+	CirCle, // 원
 	Max,	// 확인용
+};
+
+class CollisionData
+{
+public:
+	float4 Pos;
+	float4 Scale;
+
+	float Left()
+	{
+		return Pos.X - Scale.hX();
+	}
+
+	float Right()
+	{
+		return Pos.X + Scale.hX();
+	}
+
+	float Top()
+	{
+		return Pos.Y - Scale.hY();
+	}
+
+	float Bot()
+	{
+		return Pos.Y + Scale.hY();
+	}
+
+	int iLeft()
+	{
+		return static_cast<int>(Left());
+	}
+	int iRight()
+	{
+		return static_cast<int>(Right());
+	}
+	int iTop()
+	{
+		return static_cast<int>(Top());
+	}
+	int iBot()
+	{
+		return static_cast<int>(Bot());
+	}
+
 };
 
 // 설명 :
 class GameEngineActor;
 class CollisionInitClass;
-class GameEngineCollision : public GameEngineObject
+class GameEngineCollision : public GameEngineActorSubObject
 {
 	static bool(*CollisionFunction[static_cast<int>(CollisionType::Max)][static_cast<int>(CollisionType::Max)])(GameEngineCollision* _Left, GameEngineCollision* _Right);
 
 	friend CollisionInitClass;
 	friend GameEngineActor;
+	friend GameEngineLevel;
 
 public:
 	static bool PointToPoint(GameEngineCollision* _Left, GameEngineCollision* _Right);
@@ -70,33 +116,50 @@ public:
 
 	template<typename EnumType>
 	bool Collision(EnumType _Order, std::vector<GameEngineCollision*>& _Result
-		, CollisionType _ThisType = CollisionType::Circle
-		, CollisionType _OtherType = CollisionType::Circle)
+		, CollisionType _ThisType = CollisionType::CirCle
+		, CollisionType _OtherType = CollisionType::CirCle)
 	{
 		return Collision(static_cast<int>(_Order), _Result, _ThisType, _OtherType);
 	}
 
 	bool Collision(int _Order, std::vector<GameEngineCollision*>& _Result
-		, CollisionType _ThisType = CollisionType::Circle
-		, CollisionType _OtherType = CollisionType::Circle);
+		, CollisionType _ThisType = CollisionType::CirCle
+		, CollisionType _OtherType = CollisionType::CirCle);
 
 	void SetOrder(int _Order) override;
-
-	GameEngineActor* GetActor()
-	{
-		return Master;
-	}
 	
 	bool CollisionCheck(GameEngineCollision* _Other
 		, CollisionType _ThisType
 		, CollisionType _OtherType);
 
+	float4 GetActorPivotPos();
+
+	float4 GetActorScale()
+	{
+		return CollisionScale;
+	}
+	
+	CollisionData GetCollisionData()
+	{
+		CollisionData Data;
+		Data.Pos = GetActorPivotPos();
+		Data.Scale = GetActorScale();
+		return Data;
+	}
+
+	void SetCollisionType(CollisionType _ColType)
+	{
+		ColType = _ColType;
+	}
+
 protected:
 
 private:
-	GameEngineActor* Master = nullptr;
+	CollisionType ColType = CollisionType::Rect;
+
 	float4 CollisionPos;
 	float4 CollisionScale;
 
+	void DebugRender();
 };
 
