@@ -54,6 +54,8 @@ protected:
 	PlayerDir Dir = PlayerDir::Right;
 	std::string CurState = "";
 
+	GameEngineCollision* BodyCollision = nullptr;
+
 	void DirCheck();
 
 	void ChangeAnimationState(const std::string& _StateName);

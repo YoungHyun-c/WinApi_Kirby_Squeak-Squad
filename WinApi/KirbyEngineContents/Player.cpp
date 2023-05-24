@@ -7,6 +7,7 @@
 #include <GameEnginePlatform/GameEngineWindowTexture.h>
 #include <GameEngineCore/ResourcesManager.h>
 #include <GameEngineCore/GameEngineRenderer.h>
+#include <GameEngineCore/GameEngineCollision.h>
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore/GameEngineCamera.h>
 #include "Bullet.h"
@@ -111,6 +112,12 @@ void Player::Start()
 		Ptr->SetRenderPos({ -400, -270 });
 		Ptr->SetRenderScale({ 200, 10 });
 		Ptr->SetTexture("HPBar.Bmp");
+	}
+
+	{
+		BodyCollision = CreateCollision(CollisionOrder::PlayerBody);
+		BodyCollision->SetCollisionScale({ 100, 100 });
+
 	}
 
 	ChangeState(PlayerState::Idle);

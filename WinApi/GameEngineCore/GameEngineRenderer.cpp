@@ -97,7 +97,7 @@ void GameEngineRenderer::Render(GameEngineCamera* _Camera, float _DeltaTime)
 			}
 		}
 
-		int Frame = CurAnimation->Frames[CurAnimation->CurFrame];
+		size_t Frame = CurAnimation->Frames[CurAnimation->CurFrame];
 
 		Sprite = CurAnimation->Sprite;
 		const GameEngineSprite::Sprite& SpriteInfo = Sprite->GetSprite(Frame);
@@ -201,7 +201,7 @@ void GameEngineRenderer::CreateAnimation(
 		FrameDir = -1;
 	}
 
-	size_t Start = _Start;
+	size_t Start = Animation.StartFrame;
 
 	for (size_t i = 0; i < Animation.Inters.size(); i++)
 	{

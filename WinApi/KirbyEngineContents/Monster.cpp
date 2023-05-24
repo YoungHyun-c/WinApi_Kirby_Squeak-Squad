@@ -3,6 +3,7 @@
 #include <GameEngineCore/ResourcesManager.h>
 #include "ContentsEnum.h"
 #include <GameEngineCore/GameEngineRenderer.h>
+#include <GameEngineCore/GameEngineCollision.h>
 
 
 std::list<Monster*> Monster::AllMonster;
@@ -57,4 +58,7 @@ void Monster::Start()
 		Ptr->SetRenderScale({ 150, 150 });
 		//Ptr->SetTexture("HPBar.bmp");
 	}
+
+	GameEngineCollision* BodyCollision = CreateCollision(CollisionOrder::MonsterBody);
+	BodyCollision->SetCollisionScale({ 100, 100 });
 }

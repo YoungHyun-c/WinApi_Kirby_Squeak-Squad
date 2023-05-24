@@ -8,6 +8,7 @@
 // 위치가 있다면 이 녀석으로 표현해야 한다.
 class GameEngineLevel;
 class GameEngineRenderer;
+class GameEngineCollision;
 class GameEngineActor : public GameEngineObject
 {
 	friend GameEngineLevel;
@@ -58,12 +59,19 @@ public:
 
 	GameEngineRenderer* CreateRenderer(const std::string& _ImageName, int _Order);
 
-	GameEngineRenderer* CreateCollision(int _Order = 0);
+	template<typename EnumType>
+	GameEngineCollision* CreateCollision(EnumType _Order = 0)
+	{
+		return CreateCollision(static_cast<int>(_Order));
+	}
+
+	GameEngineCollision* CreateCollision(int _Order = 0);
 
 	GameEngineLevel* GetLevel()
 	{
 		return Level;
 	}
+
 
 protected:
 	virtual void LevelStart() {}
@@ -76,8 +84,9 @@ private:
 	float4 Scale = float4::ZERO; // <= 크기는 엑터한테 필요 없다.
 
 	std::list<GameEngineRenderer*> AllRenderer;
+	std::list<GameEngineCollision*> AllCollision;
 
-	void PushMainCameraRenderer(GameEngineRenderer*);
+	
 
 	void ActorRelease();
 };
