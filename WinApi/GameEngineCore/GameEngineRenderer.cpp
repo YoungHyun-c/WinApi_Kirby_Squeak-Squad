@@ -64,7 +64,7 @@ void GameEngineRenderer::SetRenderScaleToTexture()
 }
 
 
-void GameEngineRenderer::Render(GameEngineCamera* _Camera, float _DeltaTime)
+void GameEngineRenderer::Render(float _DeltaTime)
 {
 	if (nullptr != CurAnimation)
 	{
@@ -118,7 +118,7 @@ void GameEngineRenderer::Render(GameEngineCamera* _Camera, float _DeltaTime)
 
 	GameEngineWindowTexture* BackBuffer = GameEngineWindow::MainWindow.GetBackBuffer();
 
-	BackBuffer->TransCopy(Texture, GetActor()->GetPos() + RenderPos - _Camera->GetPos(), RenderScale, CopyPos, CopyScale);
+	BackBuffer->TransCopy(Texture, GetActor()->GetPos() + RenderPos - Camera->GetPos(), RenderScale, CopyPos, CopyScale);
 }
 
 
@@ -229,6 +229,16 @@ void GameEngineRenderer::ChangeAnimation(const std::string& _AnimationName, bool
 		MsgBoxAssert("존재하지 않는 애니메이션으로 체인지 하려고 했습니다." + _AnimationName);
 		return;
 	}
+}
+
+void GameEngineRenderer::MainCameraSetting()
+{
+	Camera = GetActor()->GetLevel()->GetMainCamera();
+}
+
+void GameEngineRenderer::UICameraSetting()
+{
+	Camera = GetActor()->GetLevel()->GetUICamera();
 }
 
 void GameEngineRenderer::Start()

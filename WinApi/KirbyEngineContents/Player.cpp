@@ -1,4 +1,6 @@
 #include "Player.h"
+#pragma region Headers
+
 #include "ContentsEnum.h"
 #include <Windows.h>
 #include <GameEngineBase/GameEngineTime.h>
@@ -10,9 +12,13 @@
 #include <GameEngineCore/GameEngineCollision.h>
 #include <GameEngineCore/GameEngineLevel.h>
 #include <GameEngineCore/GameEngineCamera.h>
+#include <GameEngineCore/GameEngineCore.h>
 #include "Bullet.h"
 #include "Monster.h"
+#include "PlayUIManager.h"
 #include <GameEnginePlatform/GameEngineInput.h>
+
+#pragma endregion
 
 Player* Player::MainPlayer = nullptr;
 
@@ -78,7 +84,7 @@ void Player::Start()
 
 	{
 		//MainRenderer = CreateRenderer(RenderOrder::Play);
-		MainRenderer = CreateRenderer(-100);
+		MainRenderer = CreateRenderer(RenderOrder::Play);
 
 		//Folder
 		/*MainRenderer->CreateAnimation("Test", "FolderPlayer");
@@ -178,7 +184,8 @@ void Player::Update(float _Delta)
 
 	if (true == GameEngineInput::IsDown('Y'))
 	{
-		MainRenderer->SetOrder(100);
+		//MainRenderer->SetOrder(100);
+		GameEngineLevel::CollisionDebugRenderSwitch();
 		//GravityOff();
 	}
 

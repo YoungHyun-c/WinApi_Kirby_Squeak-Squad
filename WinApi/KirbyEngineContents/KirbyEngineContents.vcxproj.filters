@@ -27,6 +27,9 @@
     <ClInclude Include="Monster.h">
       <Filter>Global</Filter>
     </ClInclude>
+    <ClInclude Include="PlayUIManager.h">
+      <Filter>Play</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EndingLevel.cpp">
@@ -55,6 +58,9 @@
     <ClCompile Include="Monster.cpp">
       <Filter>Global</Filter>
     </ClCompile>
+    <ClCompile Include="PlayUIManager.cpp">
+      <Filter>Play</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Level">
@@ -62,6 +68,9 @@
     </Filter>
     <Filter Include="Global">
       <UniqueIdentifier>{222094d9-ecfa-4d8b-9975-dc7b4e7b9334}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Play">
+      <UniqueIdentifier>{d30e10ff-0424-474d-84c5-6d31b893dbef}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -4,6 +4,7 @@
 #include <GameEngineCore/GameEngineCamera.h>
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEnginePlatform/GameEngineWindow.h>
+#include "PlayUIManager.h"
 
 // Contents
 #include "Player.h"
@@ -51,6 +52,8 @@ void PlayLevel::Start()
 
 	LevelPlayer = CreateActor<Player>();
 	LevelPlayer->SetGroundTexture("Stage1_1.bmp");
+
+	CreateActor<PlayUIManager>();
 }
 
 void PlayLevel::Update(float _Delta)
