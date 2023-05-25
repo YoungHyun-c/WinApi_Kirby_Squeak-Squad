@@ -33,8 +33,8 @@ void BackGround::Update(float _Delta)
 
 }
 
-void BackGround::Render() 
-{
+//void BackGround::Render() 
+//{
 	//GameEngineWindowTexture* FindTexture = ResourcesManager::GetInst().FindTexture(FileName);
 	//
 	//if (nullptr == FindTexture)
@@ -54,7 +54,7 @@ void BackGround::Render()
 	////							카피하려는 이미지의			시작위치, 크기
 	//// BackBuffer->TransCopy(FindTexture, GetPos(), Scale, { 0, 0}, FindTexture->GetScale());
 	//BackBuffer->TransCopy(FindTexture, GetPos(), Scale, { 0, 0 }, FindTexture->GetScale());
-}
+//}
 
 void BackGround::Release()
 {

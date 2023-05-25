@@ -76,10 +76,6 @@ void PlayLevel::Update(float _Delta)
 	}
 }
 
-void PlayLevel::Render()
-{
-
-}
 
 void PlayLevel::Release()
 {

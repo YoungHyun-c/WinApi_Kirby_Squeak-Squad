@@ -95,6 +95,7 @@ private:
 		std::vector<size_t> Frames;
 		std::vector<float> Inters;
 		bool Loop = true;
+		bool IsEnd = false;
 	};
 
 public:
@@ -120,6 +121,11 @@ public:
 
 	void MainCameraSetting();
 	void UICameraSetting();
+
+	bool IsAnimationEnd()
+	{
+		return CurAnimation->IsEnd;
+	}
 
 	std::map<std::string, Animation> AllAnimation;
 	Animation* CurAnimation = nullptr;

@@ -54,6 +54,8 @@ protected:
 	PlayerDir Dir = PlayerDir::Right;
 	std::string CurState = "";
 
+	int TestValue = 0;
+
 	GameEngineCollision* BodyCollision = nullptr;
 
 	void DirCheck();
@@ -64,7 +66,7 @@ private:
 	void LevelStart() override;
 	void Start() override;
 	void Update(float _Delta) override;
-	void Render() override;
+	void Render(float _Delta) override;
 
 	float JumpPower = 7.0f;
 };

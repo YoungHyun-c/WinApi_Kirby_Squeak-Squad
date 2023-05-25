@@ -20,6 +20,11 @@ void Player::RunStart()
 
 void Player::IdleUpdate(float _Delta)
 {
+	if (true == MainRenderer->IsAnimationEnd())
+	{
+		++TestValue;
+	}
+
 	{
 		unsigned int Color = GetGroundColor(RGB(255, 255, 255));
 		if (RGB(255, 255, 255) == Color)

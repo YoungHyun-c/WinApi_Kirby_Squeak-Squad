@@ -274,8 +274,8 @@ void Player::Update(float _Delta)
 	//GetLevel()->GetMainCamera()->AddPos(MovePos);
 }
 
-void Player::Render()
-{
+//void Player::Render()
+//{
 	// SetPos({ 200, 200 });
 	// SetScale({ 100, 100 });
 
@@ -303,7 +303,7 @@ void Player::Render()
 	//);
 	//*/
 
-}
+//}
 
 void Player::StateUpdate(float _Delta)
 {
@@ -395,4 +395,15 @@ void Player::ChangeAnimationState(const std::string& _StateName)
 void Player::LevelStart()
 {
 	MainPlayer = this;
+}
+
+void Player::Render(float _Delta)
+{
+	std::string Text = "";
+
+	Text += std::to_string(TestValue);
+
+	HDC dc = GameEngineWindow::MainWindow.GetBackBuffer()->GetImageDC();
+
+	TextOutA(dc, 2, 3, Text.c_str(), Text.size());
 }
