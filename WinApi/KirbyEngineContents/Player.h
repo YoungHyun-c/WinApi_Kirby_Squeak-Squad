@@ -10,8 +10,8 @@ enum class PlayerState
 
 enum class PlayerDir
 {
-	Right,
 	Left,
+	Right,
 	Max,
 };
 

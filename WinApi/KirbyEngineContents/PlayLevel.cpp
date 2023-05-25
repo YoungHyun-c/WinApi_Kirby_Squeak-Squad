@@ -29,7 +29,7 @@ void PlayLevel::Start()
 		FilePath.SetCurrentPath();
 		FilePath.MoveParentToExistsChild("Resource");
 		FilePath.MoveChild("Resource\\BackGround\\");
-		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("StageTestPixel.bmp"));
+		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("Stage1_1.bmp"));
 	}
 	// ResourcesManager::GetInst().TextureLoad("AAA.Png", 경로);
 
@@ -44,13 +44,13 @@ void PlayLevel::Start()
 	// Player* NewPlayer = new Player();
 
 	BackGroundPtr = CreateActor<BackGround>();
-	BackGroundPtr->Init("StageTest.Bmp", "StageTestPixel.bmp");
+	BackGroundPtr->Init("StageTest.Bmp", "Stage1_1.bmp");
 	
 	/*BackGround* Back = CreateActor<BackGround>();
 	Back->Init("StageTest.Bmp");*/
 
 	LevelPlayer = CreateActor<Player>();
-	LevelPlayer->SetGroundTexture("StageTestPixel.bmp");
+	LevelPlayer->SetGroundTexture("Stage1_1.bmp");
 }
 
 void PlayLevel::Update(float _Delta)
@@ -90,7 +90,7 @@ void PlayLevel::LevelStart(GameEngineLevel* _PrevLevel)
 		MsgBoxAssert("플레이어를 세팅해주지 않았습니다.");
 	}
 	
-	LevelPlayer->SetGroundTexture("StageTestPixel.bmp");
+	LevelPlayer->SetGroundTexture("Stage1_1.bmp");
 	//float4 WinScale = GameEngineWindow::MainWindow.GetScale();
 	//LevelPlayer->SetPos(WinScale.Half());
 	// 0 0
