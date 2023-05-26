@@ -415,7 +415,7 @@ void Player::Render(float _Delta)
 	Text += "플레이어 테스트 값 : ";
 	Text += std::to_string(TestValue);
 	HDC dc = GameEngineWindow::MainWindow.GetBackBuffer()->GetImageDC();
-	TextOutA(dc, 2, 3, Text.c_str(), static_cast<int>(Text.size()));
+	TextOutA(dc, 800, 3, Text.c_str(), static_cast<int>(Text.size()));
 
 	CollisionData Data;
 
