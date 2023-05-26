@@ -125,8 +125,8 @@ void Player::Start()
 		MainRenderer->CreateAnimation("Right_Run", "KirbyRightNormal.bmp", 0, 13, 0.1f, true);
 		//MainRenderer->ChangeAnimation("Idle");
 		MainRenderer->ChangeAnimation("Right_Idle");
-		MainRenderer->SetRenderScale({ 200, 200 });
-		MainRenderer->SetRenderScaleToTexture();
+		MainRenderer->SetRenderScale({ 400, 400 });
+		//MainRenderer->SetRenderScaleToTexture();
 		/*GameEngineRenderer* Ptr = CreateRenderer("Test.Bmp", RenderOrder::Play);
 * 
 * 
@@ -187,6 +187,16 @@ void Player::Update(float _Delta)
 		//MainRenderer->SetOrder(100);
 		GameEngineLevel::CollisionDebugRenderSwitch();
 		//GravityOff();
+	}
+
+	if (true == GameEngineInput::IsPress('N'))
+	{
+		GameEngineWindow::MainWindow.AddDoubleBufferingCopyScaleRatio(-1.0f * _Delta);
+	}
+
+	if (true == GameEngineInput::IsPress('M'))
+	{
+		GameEngineWindow::MainWindow.AddDoubleBufferingCopyScaleRatio(1.0f * _Delta);
 	}
 
 	StateUpdate(_Delta);

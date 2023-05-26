@@ -21,9 +21,10 @@ void PlayUIManager::Start()
 	// 카메라가 안움직여
 
 	{
-		GameEngineRenderer* Ptr = CreateUIRenderer("HPBar.bmp", RenderOrder::Play);
-		Ptr->SetRenderPos({ 100, 100 });
-		Ptr->SetRenderScale({ 40, 40 });
-		Ptr->SetTexture("HPBar.bmp");
+		// UI
+		//GameEngineRenderer* Ptr = CreateUIRenderer("HPBar.bmp", RenderOrder::Play);
+		//Ptr->SetRenderPos({ 100, 100 });
+		//Ptr->SetRenderScale({ 40, 40 });
+		//Ptr->SetTexture("HPBar.bmp");
 	}
 }

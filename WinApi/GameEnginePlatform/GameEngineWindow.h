@@ -59,6 +59,16 @@ public:
 		return IsFocusValue;
 	}
 
+	void SetDoubleBufferingCopySaleRatio(float _Ratio)
+	{
+		CopyRatio = _Ratio;
+	}
+
+	void AddDoubleBufferingCopyScaleRatio(float _Ratio)
+	{
+		CopyRatio += _Ratio;
+	}
+
 protected:
 
 private:
@@ -67,6 +77,8 @@ private:
 	static HINSTANCE Instance;
 	std::string Title = "";
 	HWND hWnd = nullptr;
+
+	float CopyRatio = 1.0f;
 
 	float4 Scale;
 	GameEngineWindowTexture* WindowBuffer = nullptr;
