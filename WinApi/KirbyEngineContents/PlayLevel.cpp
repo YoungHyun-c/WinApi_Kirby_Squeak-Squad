@@ -4,6 +4,7 @@
 #include <GameEngineCore/GameEngineCamera.h>
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEnginePlatform/GameEngineWindow.h>
+#include <GameEnginePlatform/GameEngineSound.h>
 #include "PlayUIManager.h"
 
 // Contents
@@ -24,6 +25,7 @@ PlayLevel::~PlayLevel()
 
 void PlayLevel::Start()
 {
+	GameEngineSound::SoundLoad("aaa", "aaa");
 	if (false == ResourcesManager::GetInst().IsLoadTexture("Test,Bmp"))
 	{
 		GameEnginePath FilePath;

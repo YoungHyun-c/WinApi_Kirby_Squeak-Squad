@@ -23,4 +23,20 @@
       <UniqueIdentifier>{15e2a2e3-8fae-4ea4-99c9-1bb6ac3528cd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="ThirdParty\FMOD\lib\x64\fmodL.dll">
+      <Filter>FMOD\Debug</Filter>
+    </None>
+    <None Include="ThirdParty\FMOD\lib\x64\fmod.dll">
+      <Filter>FMOD\Release</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="ThirdParty\FMOD\lib\x64\fmodL_vc.lib">
+      <Filter>FMOD\Debug</Filter>
+    </Library>
+    <Library Include="ThirdParty\FMOD\lib\x64\fmod_vc.lib">
+      <Filter>FMOD\Release</Filter>
+    </Library>
+  </ItemGroup>
 </Project>
