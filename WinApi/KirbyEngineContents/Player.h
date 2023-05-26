@@ -62,12 +62,18 @@ protected:
 
 	void ChangeAnimationState(const std::string& _StateName);
 
+
 private:
 	void LevelStart() override;
 	void Start() override;
 	void Update(float _Delta) override;
 	void Render(float _Delta) override;
 
+
 	float JumpPower = 7.0f;
+
+//================================= DebugValue
+	float4 LeftCheck = { -100.0f, -25.0f };
+	float4 RightCheck = { 100.0f, -25.0f };
 };
 

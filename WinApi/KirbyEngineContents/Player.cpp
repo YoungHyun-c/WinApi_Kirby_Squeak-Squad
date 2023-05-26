@@ -314,7 +314,6 @@ void Player::Update(float _Delta)
 	//	GetPos().iY() + GetScale().ihY()
 	//);
 	//*/
-
 //}
 
 void Player::StateUpdate(float _Delta)
@@ -413,9 +412,21 @@ void Player::Render(float _Delta)
 {
 	std::string Text = "";
 
+	Text += "플레이어 테스트 값 : ";
 	Text += std::to_string(TestValue);
-
 	HDC dc = GameEngineWindow::MainWindow.GetBackBuffer()->GetImageDC();
-
 	TextOutA(dc, 2, 3, Text.c_str(), Text.size());
+
+	CollisionData Data;
+
+	Data.Pos = ActorCameraPos();
+	Data.Scale = { 180, 80};
+	//Rectangle(dc, Data.iLeft(), Data.iTop(), Data.iRight(), Data.iBot());
+
+	// 커피가 공격할 범위
+	Data.Pos = ActorCameraPos() + LeftCheck;
+	Rectangle(dc, Data.iLeft(), Data.iTop(), Data.iRight(), Data.iBot());
+
+	Data.Pos = ActorCameraPos() + RightCheck;
+	Rectangle(dc, Data.iLeft(), Data.iTop(), Data.iRight(), Data.iBot());
 }

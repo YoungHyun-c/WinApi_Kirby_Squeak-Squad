@@ -108,13 +108,14 @@ void Player::RunUpdate(float _Delta)
 
 	if (true == GameEngineInput::IsPress('A') && Dir == PlayerDir::Left)
 	{
-		CheckPos = { -30.0f, -50.0f };
+		CheckPos = LeftCheck;
 
 		MovePos = { -Speed * _Delta, 0.0f };
 	}
 	else if (true == GameEngineInput::IsPress('D') && Dir == PlayerDir::Right)
 	{
-		CheckPos = { 30.0f, -50.0f };
+		CheckPos = RightCheck;
+
 		MovePos = { Speed * _Delta, 0.0f };
 	}
 	if (true == GameEngineInput::IsPress('W'))
