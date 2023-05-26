@@ -7,6 +7,7 @@
 #include <GameEngineBase/GameEnginePath.h>
 #include <GameEnginePlatform/GameEngineWindow.h>
 #include <GameEnginePlatform/GameEngineWindowTexture.h>
+#include <GameEnginePlatform/GameEngineSound.h>
 #include <GameEngineCore/ResourcesManager.h>
 #include <GameEngineCore/GameEngineRenderer.h>
 #include <GameEngineCore/GameEngineCollision.h>
@@ -127,6 +128,7 @@ void Player::Start()
 		MainRenderer->ChangeAnimation("Right_Idle");
 		MainRenderer->SetRenderScale({ 400, 400 });
 		//MainRenderer->SetRenderScaleToTexture();
+
 		/*GameEngineRenderer* Ptr = CreateRenderer("Test.Bmp", RenderOrder::Play);
 * 
 * 
