@@ -25,7 +25,7 @@ PlayLevel::~PlayLevel()
 
 void PlayLevel::Start()
 {
-	GameEngineSound::SoundLoad("aaa", "aaa");
+	// ResourcesManager::GetInst().TextureLoad("AAA.Png", 경로);
 	if (false == ResourcesManager::GetInst().IsLoadTexture("Test,Bmp"))
 	{
 		GameEnginePath FilePath;
@@ -34,7 +34,17 @@ void PlayLevel::Start()
 		FilePath.MoveChild("Resource\\BackGround\\");
 		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("Stage1_1.bmp"));
 	}
-	// ResourcesManager::GetInst().TextureLoad("AAA.Png", 경로);
+
+	GameEngineSound::SetGlobalVolume(0.5f);
+	if (nullptr == GameEngineSound::FindSound("Stage1.mp3"))
+	{
+		GameEnginePath FilePath;
+		FilePath.SetCurrentPath();
+		FilePath.MoveParentToExistsChild("Resource");
+		FilePath.MoveChild("Resource\\Sound\\");
+
+		GameEngineSound::SoundLoad(FilePath.PlusFilePath("Stage1.mp3"));
+	}
 
 	// 플레이 레벨이 만들어졌다.
 	// 이 레벨에는 뭐가 있어야지?
@@ -66,6 +76,11 @@ void PlayLevel::Update(float _Delta)
 	}
 	//GameEngineCore::ChangeLevel("TitleLevel");
 
+	if (true == GameEngineInput::IsDown('P'))
+	{
+		BGMPlayer.Stop();
+	}
+
 	if (true == GameEngineInput::IsDown('J'))
 	{
 		BackGroundPtr->SwitchRender();
@@ -91,6 +106,8 @@ void PlayLevel::LevelStart(GameEngineLevel* _PrevLevel)
 		MsgBoxAssert("플레이어를 세팅해주지 않았습니다.");
 	}
 	
+	BGMPlayer = GameEngineSound::SoundPlay("Stage1.mp3");
+
 	LevelPlayer->SetGroundTexture("Stage1_1.bmp");
 	//float4 WinScale = GameEngineWindow::MainWindow.GetScale();
 	//LevelPlayer->SetPos(WinScale.Half());

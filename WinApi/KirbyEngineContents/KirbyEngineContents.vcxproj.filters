@@ -30,6 +30,9 @@
     <ClInclude Include="PlayUIManager.h">
       <Filter>Play</Filter>
     </ClInclude>
+    <ClInclude Include="GlobalValue.h">
+      <Filter>Global</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EndingLevel.cpp">
@@ -60,6 +63,9 @@
     </ClCompile>
     <ClCompile Include="PlayUIManager.cpp">
       <Filter>Play</Filter>
+    </ClCompile>
+    <ClCompile Include="GlobalValue.cpp">
+      <Filter>Global</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
