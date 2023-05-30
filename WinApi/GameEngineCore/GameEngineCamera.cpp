@@ -3,18 +3,18 @@
 
 GameEngineCamera::GameEngineCamera()
 {
-
 }
 
 GameEngineCamera::~GameEngineCamera()
 {
-
 }
 
 void GameEngineCamera::Render(float _Delta)
 {
 	// for(const std::pair<int, std::list<GameEngineRenderer*>>& Pair : Renderers)
 	
+
+
 	std::map<int, std::list<GameEngineRenderer*>>::iterator GroupStartIter = Renderers.begin();
 	std::map<int, std::list<GameEngineRenderer*>>::iterator GroupEndIter = Renderers.end();
 
@@ -24,6 +24,7 @@ void GameEngineCamera::Render(float _Delta)
 
 		std::list<GameEngineRenderer*>::iterator RenderStartIter = List.begin();
 		std::list<GameEngineRenderer*>::iterator RenderEndIter = List.end();
+
 
 		for (; RenderStartIter != RenderEndIter; ++RenderStartIter)
 		{
@@ -52,12 +53,11 @@ void GameEngineCamera::PushRenderer(GameEngineRenderer* _Renderer, int _Order)
 
 void GameEngineCamera::Release()
 {
+
 	std::map<int, std::list<GameEngineRenderer*>>::iterator GroupStartIter = Renderers.begin();
 	std::map<int, std::list<GameEngineRenderer*>>::iterator GroupEndIter = Renderers.end();
 
 	// 조오금 이라도 연산을 줄이려는 것.
-	std::list<GameEngineRenderer*>::iterator ActorStartIter;
-	std::list<GameEngineRenderer*>::iterator ActorEndIter;
 
 	for (; GroupStartIter != GroupEndIter ; ++GroupStartIter)
 	{
@@ -82,6 +82,7 @@ void GameEngineCamera::Release()
 			}
 
 			ActorStartIter = Group.erase(ActorStartIter);
+
 		}
 	}
 }
