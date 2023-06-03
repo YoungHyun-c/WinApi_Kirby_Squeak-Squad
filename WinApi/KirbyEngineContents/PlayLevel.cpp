@@ -56,6 +56,8 @@ void PlayLevel::Start()
 	// 이렇게 만들면 자기 임의대로 만들겠다는 것이라 절대 xxxxx
 	// Player* NewPlayer = new Player();
 
+	GameEngineWindow::MainWindow.CursorOff(); //커서 없애기
+
 	BackGroundPtr = CreateActor<BackGround>();
 	BackGroundPtr->Init("BoSSTest.Bmp", "BoSSTest1_1.bmp");
 	
@@ -64,7 +66,7 @@ void PlayLevel::Start()
 
 	LevelPlayer = CreateActor<Player>();
 	LevelPlayer->SetGroundTexture("BoSSTest1_1.bmp");
-	LevelPlayer->OverOn();
+	//LevelPlayer->OverOn();
 
 	CreateActor<PlayUIManager>();
 }

@@ -54,6 +54,8 @@ public:
 	void ClearBackBuffer();
 	void DoubleBuffering();
 
+	void CursorOff();
+
 	static bool IsFocus()
 	{
 		return IsFocusValue;

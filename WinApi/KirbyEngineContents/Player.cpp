@@ -68,9 +68,11 @@ void Player::Start()
 
 		//ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("Test.bmp"));
 
-		//ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("KirbyRightNormal.bmp"), 5, 25);
-		//ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("KirbyLeftNormal.bmp"), 5, 25);
-		ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("BossStageAni.bmp"), 6, 2);
+		ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("KirbyRightNormal.bmp"), 5, 25);
+		ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("KirbyLeftNormal.bmp"), 5, 25);
+		
+		//ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("BossStageAni.bmp"), 6, 2); //BOSS Stage
+
 		//ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("KirbyTest.bmp"), 42, 1);
 		//ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("Left_Kirby.bmp"), 42, 14);
 		//ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("Right_Kirby.bmp"), 42, 14);
@@ -120,15 +122,15 @@ void Player::Start()
 		//MainRenderer->CreateAnimation("Left_Run", "Left_Player.bmp", 3, 6, 0.1f, true);
 		//MainRenderer->CreateAnimation("Right_Run", "Right_Player.bmp", 10, 0, 0.1f, true);
 
-		/*MainRenderer->CreateAnimation("Left_Idle", "KirbyLeftNormal.bmp", 0, 1, 1.0f, true);
+		MainRenderer->CreateAnimation("Left_Idle", "KirbyLeftNormal.bmp", 0, 1, 1.0f, true);
 		MainRenderer->CreateAnimation("Right_Idle", "KirbyRightNormal.bmp", 0, 1, 1.0f, true);
 
 		MainRenderer->CreateAnimation("Left_Run", "KirbyLeftNormal.bmp", 0, 13, 0.1f, true);
-		MainRenderer->CreateAnimation("Right_Run", "KirbyRightNormal.bmp", 0, 13, 0.1f, true);*/
+		MainRenderer->CreateAnimation("Right_Run", "KirbyRightNormal.bmp", 0, 13, 0.1f, true);
 
-		MainRenderer->CreateAnimation("Idle", "BossStageAni.bmp", 0, 11, 0.1f, true);
-		MainRenderer->ChangeAnimation("Idle");
-		//MainRenderer->ChangeAnimation("Right_Idle");
+		//MainRenderer->CreateAnimation("Idle", "BossStageAni.bmp", 0, 11, 0.1f, true);
+		//MainRenderer->ChangeAnimation("Idle");
+		MainRenderer->ChangeAnimation("Right_Idle");
 		MainRenderer->SetRenderScale({ 1024	, 576 });
 		//MainRenderer->SetRenderScaleToTexture();
 
@@ -154,12 +156,13 @@ void Player::Start()
 
 	}
 
-	//ChangeState(PlayerState::Idle);
-	//Dir = PlayerDir::Right;
+	ChangeState(PlayerState::Idle);
+	Dir = PlayerDir::Right;
+
 	//float4 WinScale = GameEngineWindow::MainWindow.GetScale();
-	//// GetLevel()->GetMainCamera()->SetPos({ -WinScale.hX(), -WinScale.hY() });
+	//GetLevel()->GetMainCamera()->SetPos({ -WinScale.hX(), -WinScale.hY() });
 	//SetPos(WinScale.Half());
-	// GetLevel()->GetMainCamera()->SetPos({ -WinScale.hX(), -WinScale.hY() });
+	//GetLevel()->GetMainCamera()->SetPos({ -WinScale.hX(), -WinScale.hY() });
 }
 
 void Player::Update(float _Delta)
@@ -214,12 +217,12 @@ void Player::Update(float _Delta)
 	// Player->GetPos() == Monster->GetPos();
 	// float Time = GameEngineTime::MainTimer.GetDeltaTime();
 
-	/*GameEngineTime::MainTimer;
+	//GameEngineTime::MainTimer;
 
-	float Time = GameEngineTime::MainTimer.GetDeltaTime();
+	//float Time = GameEngineTime::MainTimer.GetDeltaTime();
 
 
-	AddPos({ 100.0f* _Delta, 0.0f });*/
+	//AddPos({ 100.0f* _Delta, 0.0f });
 
 	//static float Frame = 0.0f;
 	//Frame += Delta *= 10.0f;
@@ -274,16 +277,16 @@ void Player::Update(float _Delta)
 
 	//
 	////if (0 != GetAsyncKeyState('F'))
-	//if (true == GameEngineInput::IsUp(VK_LBUTTON))
-	//{
-	//	float4 Pos = GameEngineWindow::MainWindow.GetMousePos();
+	if (true == GameEngineInput::IsUp(VK_LBUTTON))
+	{
+		float4 Pos = GameEngineWindow::MainWindow.GetMousePos();
 
-	//	Bullet* NewBullet = GetLevel()->CreateActor<Bullet>();
-	//	NewBullet->Renderer->SetTexture("Star.Bmp");
-	//	// 방향을 표현하는 xy는 크기가 1이어야 한다.
-	//	NewBullet->SetDir(float4::RIGHT);
-	//	NewBullet->SetPos(GetPos());
-	//}
+		Bullet* NewBullet = GetLevel()->CreateActor<Bullet>();
+		NewBullet->Renderer->SetTexture("Star.Bmp");
+		// 방향을 표현하는 xy는 크기가 1이어야 한다.
+		NewBullet->SetDir(float4::RIGHT);
+		NewBullet->SetPos(GetPos());
+	}
 
 	//AddPos(MovePos);
 	//GetLevel()->GetMainCamera()->AddPos(MovePos);
