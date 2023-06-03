@@ -32,7 +32,7 @@ void PlayLevel::Start()
 		FilePath.SetCurrentPath();
 		FilePath.MoveParentToExistsChild("Resource");
 		FilePath.MoveChild("Resource\\BackGround\\");
-		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("Stage1_1.bmp"));
+		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("BoSSTest1_1.bmp"));
 	}
 
 	GameEngineSound::SetGlobalVolume(0.5f);
@@ -57,13 +57,14 @@ void PlayLevel::Start()
 	// Player* NewPlayer = new Player();
 
 	BackGroundPtr = CreateActor<BackGround>();
-	BackGroundPtr->Init("StageTest.Bmp", "Stage1_1.bmp");
+	BackGroundPtr->Init("BoSSTest.Bmp", "BoSSTest1_1.bmp");
 	
 	/*BackGround* Back = CreateActor<BackGround>();
 	Back->Init("StageTest.Bmp");*/
 
 	LevelPlayer = CreateActor<Player>();
-	LevelPlayer->SetGroundTexture("Stage1_1.bmp");
+	LevelPlayer->SetGroundTexture("BoSSTest1_1.bmp");
+	LevelPlayer->OverOn();
 
 	CreateActor<PlayUIManager>();
 }
@@ -108,7 +109,7 @@ void PlayLevel::LevelStart(GameEngineLevel* _PrevLevel)
 	
 	BGMPlayer = GameEngineSound::SoundPlay("Stage1.mp3");
 
-	LevelPlayer->SetGroundTexture("Stage1_1.bmp");
+	LevelPlayer->SetGroundTexture("BoSSTest1_1.bmp");
 	//float4 WinScale = GameEngineWindow::MainWindow.GetScale();
 	//LevelPlayer->SetPos(WinScale.Half());
 	// 0 0

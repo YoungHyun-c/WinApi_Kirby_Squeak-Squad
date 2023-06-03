@@ -50,6 +50,8 @@ private:
 
 	void Release();
 
+	void OverRelease();
+
 	void Render(float _Delta);
 };
 

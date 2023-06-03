@@ -68,8 +68,9 @@ void Player::Start()
 
 		//ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("Test.bmp"));
 
-		ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("KirbyRightNormal.bmp"), 5, 25);
-		ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("KirbyLeftNormal.bmp"), 5, 25);
+		//ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("KirbyRightNormal.bmp"), 5, 25);
+		//ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("KirbyLeftNormal.bmp"), 5, 25);
+		ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("BossStageAni.bmp"), 6, 2);
 		//ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("KirbyTest.bmp"), 42, 1);
 		//ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("Left_Kirby.bmp"), 42, 14);
 		//ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("Right_Kirby.bmp"), 42, 14);
@@ -119,14 +120,16 @@ void Player::Start()
 		//MainRenderer->CreateAnimation("Left_Run", "Left_Player.bmp", 3, 6, 0.1f, true);
 		//MainRenderer->CreateAnimation("Right_Run", "Right_Player.bmp", 10, 0, 0.1f, true);
 
-		MainRenderer->CreateAnimation("Left_Idle", "KirbyLeftNormal.bmp", 0, 1, 1.0f, true);
+		/*MainRenderer->CreateAnimation("Left_Idle", "KirbyLeftNormal.bmp", 0, 1, 1.0f, true);
 		MainRenderer->CreateAnimation("Right_Idle", "KirbyRightNormal.bmp", 0, 1, 1.0f, true);
 
 		MainRenderer->CreateAnimation("Left_Run", "KirbyLeftNormal.bmp", 0, 13, 0.1f, true);
-		MainRenderer->CreateAnimation("Right_Run", "KirbyRightNormal.bmp", 0, 13, 0.1f, true);
-		//MainRenderer->ChangeAnimation("Idle");
-		MainRenderer->ChangeAnimation("Right_Idle");
-		MainRenderer->SetRenderScale({ 400, 400 });
+		MainRenderer->CreateAnimation("Right_Run", "KirbyRightNormal.bmp", 0, 13, 0.1f, true);*/
+
+		MainRenderer->CreateAnimation("Idle", "BossStageAni.bmp", 0, 11, 0.1f, true);
+		MainRenderer->ChangeAnimation("Idle");
+		//MainRenderer->ChangeAnimation("Right_Idle");
+		MainRenderer->SetRenderScale({ 1024	, 576 });
 		//MainRenderer->SetRenderScaleToTexture();
 
 		/*GameEngineRenderer* Ptr = CreateRenderer("Test.Bmp", RenderOrder::Play);
@@ -151,8 +154,8 @@ void Player::Start()
 
 	}
 
-	ChangeState(PlayerState::Idle);
-	Dir = PlayerDir::Right;
+	//ChangeState(PlayerState::Idle);
+	//Dir = PlayerDir::Right;
 	//float4 WinScale = GameEngineWindow::MainWindow.GetScale();
 	//// GetLevel()->GetMainCamera()->SetPos({ -WinScale.hX(), -WinScale.hY() });
 	//SetPos(WinScale.Half());

@@ -59,6 +59,11 @@ public:
 		return IsFocusValue;
 	}
 
+	float GetDoubleBufferingCopyScaleRatio() const
+	{
+		return CopyRatio;
+	}
+
 	void SetDoubleBufferingCopySaleRatio(float _Ratio)
 	{
 		CopyRatio = _Ratio;
