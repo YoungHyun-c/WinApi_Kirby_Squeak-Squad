@@ -27,6 +27,7 @@ private:
 
 	class BackGround* BackGroundPtr;
 	class Player* LevelPlayer = nullptr;
+	class TileMap* TileObject;
 
 	GameEngineSoundPlayer BGMPlayer;
 };

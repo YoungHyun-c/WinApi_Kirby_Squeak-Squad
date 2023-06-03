@@ -123,7 +123,7 @@ public:
 		float _Inter = 0.1f,
 		bool _Loop = true);
 
-	void ChangeAnimation(const std::string& _Animation, bool _ForceChange = false);
+	void ChangeAnimation(const std::string& _AnimationName, int _StartFrame = 0, bool _ForceChange = false);
 
 	void MainCameraSetting();
 	void UICameraSetting();

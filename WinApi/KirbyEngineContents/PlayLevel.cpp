@@ -2,6 +2,7 @@
 #include <GameEngineCore/GameEngineCore.h>
 #include <GameEngineCore/ResourcesManager.h>
 #include <GameEngineCore/GameEngineCamera.h>
+#include <GameEngineCore/TileMap.h>
 #include <GameEnginePlatform/GameEngineInput.h>
 #include <GameEnginePlatform/GameEngineWindow.h>
 #include <GameEnginePlatform/GameEngineSound.h>
@@ -33,6 +34,8 @@ void PlayLevel::Start()
 		FilePath.MoveParentToExistsChild("Resource");
 		FilePath.MoveChild("Resource\\BackGround\\");
 		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("BoSSTest1_1.bmp"));
+		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("Tile.bmp"));
+		ResourcesManager::GetInst().CreateSpriteSheet("Tile.bmp", 24, 40);
 	}
 
 	GameEngineSound::SetGlobalVolume(0.5f);
@@ -56,7 +59,8 @@ void PlayLevel::Start()
 	// 이렇게 만들면 자기 임의대로 만들겠다는 것이라 절대 xxxxx
 	// Player* NewPlayer = new Player();
 
-	GameEngineWindow::MainWindow.CursorOff(); //커서 없애기
+	//GameEngineWindow::MainWindow.CursorOff(); //커서 없애기
+	
 
 	BackGroundPtr = CreateActor<BackGround>();
 	BackGroundPtr->Init("BoSSTest.Bmp", "BoSSTest1_1.bmp");
@@ -67,6 +71,16 @@ void PlayLevel::Start()
 	LevelPlayer = CreateActor<Player>();
 	LevelPlayer->SetGroundTexture("BoSSTest1_1.bmp");
 	//LevelPlayer->OverOn();
+	TileObject = CreateActor<TileMap>();
+
+	TileObject->CreateTileMap("Tile.bmp", 20, 20, { 50, 50 }, 0);
+	for (int y = 0; y < 20; y++)
+	{
+		for (int x = 0; x < 20; x++)
+		{
+			TileObject->SetTile(x, y, 0);
+		}
+	}
 
 	CreateActor<PlayUIManager>();
 }
@@ -76,6 +90,11 @@ void PlayLevel::Update(float _Delta)
 	if (true == GameEngineInput::IsDown('O'))
 	{
 		GameEngineCore::ChangeLevel("TitleLevel");
+	}
+
+	if (true == GameEngineInput::IsDown('T'))
+	{
+		TileObject->SetTile(LevelPlayer->GetPos(), 3);
 	}
 	//GameEngineCore::ChangeLevel("TitleLevel");
 

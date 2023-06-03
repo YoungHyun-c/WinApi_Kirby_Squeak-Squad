@@ -131,7 +131,8 @@ void Player::Start()
 		//MainRenderer->CreateAnimation("Idle", "BossStageAni.bmp", 0, 11, 0.1f, true);
 		//MainRenderer->ChangeAnimation("Idle");
 		MainRenderer->ChangeAnimation("Right_Idle");
-		MainRenderer->SetRenderScale({ 1024	, 576 });
+		
+		MainRenderer->SetRenderScale({ 200, 40 });
 		//MainRenderer->SetRenderScaleToTexture();
 
 		/*GameEngineRenderer* Ptr = CreateRenderer("Test.Bmp", RenderOrder::Play);
