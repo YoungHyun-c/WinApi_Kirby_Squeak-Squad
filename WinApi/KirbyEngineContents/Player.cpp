@@ -156,14 +156,14 @@ void Player::Start()
 	}
 
 	{
-		GameEngineRenderer* Ptr = CreateRenderer("Fade", 6000);
-		Ptr->SetRenderScale({ 1024, 576 });
+		//GameEngineRenderer* Ptr = CreateRenderer("Fade", 6000);
+		//Ptr->SetRenderScale({ 1024, 576 });
 	}
 
 	{
 		BodyCollision = CreateCollision(CollisionOrder::PlayerBody);
-		BodyCollision->SetCollisionScale({ 10, 10 });
-		BodyCollision->SetCollisionType(CollisionType::CirCle);
+		BodyCollision->SetCollisionScale({ 100, 100 });
+		BodyCollision->SetCollisionType(CollisionType::Rect);
 
 	}
 
@@ -180,7 +180,7 @@ void Player::Update(float _Delta)
 {
 	std::vector<GameEngineCollision*> _Col;
 	if (true == BodyCollision->Collision(CollisionOrder::MonsterBody, _Col
-		, CollisionType::CirCle
+		, CollisionType::Rect
 		, CollisionType::CirCle
 	))
 	{

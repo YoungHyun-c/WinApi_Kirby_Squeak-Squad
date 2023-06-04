@@ -193,7 +193,7 @@ public:
 		return sqrtf(Value);
 	}
 
-	float Max2D()
+	float Max2D() const
 	{
 		return X > Y ? X : Y;
 	}
