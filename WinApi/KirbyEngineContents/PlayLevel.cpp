@@ -61,18 +61,15 @@ void PlayLevel::Start()
 
 	//GameEngineWindow::MainWindow.CursorOff(); //커서 없애기
 	
+	TileObject = CreateActor<TileMap>();
+
 
 	BackGroundPtr = CreateActor<BackGround>();
 	BackGroundPtr->Init("BoSSTest.Bmp", "BoSSTest1_1.bmp");
+	//BackGroundPtr->CreateRenderer("BoSSTest.bmp", 0);
+	//BackGroundPtr->CreateRenderer("BoSSTest1_1.bmp", 0);
+	TileObject->CreateRenderer("Tile.bmp", 1);
 	
-	/*BackGround* Back = CreateActor<BackGround>();
-	Back->Init("StageTest.Bmp");*/
-
-	LevelPlayer = CreateActor<Player>();
-	LevelPlayer->SetGroundTexture("BoSSTest1_1.bmp");
-	//LevelPlayer->OverOn();
-	TileObject = CreateActor<TileMap>();
-
 	TileObject->CreateTileMap("Tile.bmp", 20, 20, { 50, 50 }, 0);
 	for (int y = 0; y < 20; y++)
 	{
@@ -81,6 +78,13 @@ void PlayLevel::Start()
 			TileObject->SetTile(x, y, 0);
 		}
 	}
+
+	/*BackGround* Back = CreateActor<BackGround>();
+	Back->Init("StageTest.Bmp");*/
+
+	LevelPlayer = CreateActor<Player>();
+	LevelPlayer->SetGroundTexture("BoSSTest1_1.bmp");
+	//LevelPlayer->OverOn();
 
 	CreateActor<PlayUIManager>();
 }

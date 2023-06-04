@@ -420,7 +420,7 @@ void Player::Render(float _Delta)
 	std::string Text = "";
 
 	Text += "플레이어 테스트 값 : ";
-	Text += std::to_string(TestValue);
+	Text += std::to_string(1.0f / _Delta);
 	HDC dc = GameEngineWindow::MainWindow.GetBackBuffer()->GetImageDC();
 	TextOutA(dc, 800, 3, Text.c_str(), static_cast<int>(Text.size()));
 
