@@ -148,6 +148,7 @@ void Player::Start()
 		Ptr->SetRenderPos({ -400, -270 });
 		Ptr->SetRenderScale({ 200, 10 });
 		Ptr->SetTexture("HPBar.Bmp");
+		Ptr->SetText("라라라라");
 	}
 
 	{

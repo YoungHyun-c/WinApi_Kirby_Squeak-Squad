@@ -24,7 +24,7 @@ void PlayActor::Gravity(float _Delta)
 	// 가장 기본적인 물리는 모든힘이 다 + 진게 나의 이동방향이 된다.
 	GravityVector += float4::DOWN * GravityPower * _Delta;
 
-	AddPos(GravityVector);
+	AddPos(GravityVector * _Delta);
 }
 
 void PlayActor::CameraFocus()

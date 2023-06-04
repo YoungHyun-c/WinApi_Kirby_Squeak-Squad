@@ -147,3 +147,31 @@ void Player::RunUpdate(float _Delta)
 		}
 	}
 }
+
+//void Player::JumptStart()
+//{
+//	SetGravityVector(float4::UP * 1000.0f);
+//}
+//
+//int A = 0;
+//
+//void Player::JumpUpdate(float _Delta)
+//{
+//	Gravity(_Delta);
+//
+//	// for (size_t i = 0; i < 1000000; i++)
+//	/*{
+//		++A;
+//	}*/
+//
+//	{
+//		unsigned int Color = GetGroundColor(RGB(255, 255, 255))
+//		{
+//			if (RGB(255, 255, 255) != Color)
+//			{
+//				ChangeState(PlayerState::Idle);
+//				return;
+//			}
+//		}
+//	}
+//}
