@@ -95,7 +95,7 @@ void GameEngineRenderer::TextRender(float _DeltaTime)
 	RECT Rect;
 	Rect.left = TextPos.iX();
 	Rect.top = TextPos.iY();
-	Rect.right = TextPos.iX() + TextScale * Text.size();// TextBoxScale.ix();
+	Rect.right = TextPos.iX() + TextScale * static_cast<int>(Text.size());// TextBoxScale.ix();
 	Rect.bottom = TextPos.iY() + TextScale;// TextBoxScale.iy();
 
 

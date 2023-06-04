@@ -68,6 +68,9 @@ void Player::Start()
 
 		//ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("Test.bmp"));
 
+		GameEngineWindowTexture* T = ResourcesManager::GetInst().TextureCreate("Fade", { 1024, 576 });
+		T->FillTexture(RGB(0, 0, 0));
+
 		ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("KirbyRightNormal.bmp"), 5, 25);
 		ResourcesManager::GetInst().CreateSpriteSheet(FilePath.PlusFilePath("KirbyLeftNormal.bmp"), 5, 25);
 		
@@ -82,6 +85,7 @@ void Player::Start()
 		//FolderPath.MoveChild("Resources\\Texture\\");
 		//ResourcesManager::GetInst().CreateSpriteFolder("FolderPlayer", FolderPath.PlusFilePath("FolderPlayer"));
 		
+		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("Test.bmp"));
 		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("HPBar.bmp"));
 		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("Star.bmp"));
 	}
@@ -149,6 +153,11 @@ void Player::Start()
 		Ptr->SetRenderScale({ 200, 10 });
 		Ptr->SetTexture("HPBar.Bmp");
 		Ptr->SetText("라라라라");
+	}
+
+	{
+		GameEngineRenderer* Ptr = CreateRenderer("Fade", 6000);
+		Ptr->SetRenderScale({ 1024, 576 });
 	}
 
 	{
