@@ -26,6 +26,7 @@ private:
 	void Release() override;
 
 	class BackGround* BackGroundPtr;
+	class BackGround* FirstBackGroundPtr;
 	class Player* LevelPlayer = nullptr;
 	class TileMap* TileObject;
 

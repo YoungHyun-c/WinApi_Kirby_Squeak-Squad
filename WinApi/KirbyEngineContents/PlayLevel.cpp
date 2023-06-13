@@ -27,15 +27,17 @@ PlayLevel::~PlayLevel()
 void PlayLevel::Start()
 {
 	// ResourcesManager::GetInst().TextureLoad("AAA.Png", °æ·Î);
-	if (false == ResourcesManager::GetInst().IsLoadTexture("Test,Bmp"))
+	if (false == ResourcesManager::GetInst().IsLoadTexture("StageTest,Bmp"))
 	{
 		GameEnginePath FilePath;
 		FilePath.SetCurrentPath();
 		FilePath.MoveParentToExistsChild("Resource");
 		FilePath.MoveChild("Resource\\BackGround\\");
-		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("BoSSTest1_1.bmp"));
-		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("Tile.bmp"));
-		ResourcesManager::GetInst().CreateSpriteSheet("Tile.bmp", 24, 40);
+		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("StageTest.bmp"));
+		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("Stage1_1.bmp"));
+		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("Stage1_Back3.bmp"));
+		//ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("Tile.bmp"));
+		//ResourcesManager::GetInst().CreateSpriteSheet("Tile.bmp", 24, 40);
 	}
 
 	GameEngineSound::SetGlobalVolume(0.5f);
@@ -64,26 +66,30 @@ void PlayLevel::Start()
 	TileObject = CreateActor<TileMap>();
 
 
+	FirstBackGroundPtr = CreateActor<BackGround>();
+	FirstBackGroundPtr->Init("Stage1_Back3.bmp", "Stage1_1.bmp");
 	BackGroundPtr = CreateActor<BackGround>();
-	BackGroundPtr->Init("BoSSTest.Bmp", "BoSSTest1_1.bmp");
+	BackGroundPtr->Init("StageTest.Bmp", "Stage1_1.bmp");
+	//FirstBackGroundPtr->CreateRenderer("Stage1_1_Back.bmp",0);
 	//BackGroundPtr->CreateRenderer("BoSSTest.bmp", 0);
 	//BackGroundPtr->CreateRenderer("BoSSTest1_1.bmp", 0);
-	TileObject->CreateRenderer("Tile.bmp", 1);
 	
-	TileObject->CreateTileMap("Tile.bmp", 20, 20, { 50, 50 }, 0);
-	for (int y = 0; y < 20; y++)
-	{
-		for (int x = 0; x < 20; x++)
-		{
-			TileObject->SetTile(x, y, 0);
-		}
-	}
+	//TileObject->CreateRenderer("Tile.bmp", 1);
+	
+	//TileObject->CreateTileMap("Tile.bmp", 20, 20, { 50, 50 }, 0);
+	//for (int y = 0; y < 20; y++)
+	//{
+	//	for (int x = 0; x < 20; x++)
+	//	{
+	//		TileObject->SetTile(x, y, 0);
+	//	}
+	//}
 
 	/*BackGround* Back = CreateActor<BackGround>();
 	Back->Init("StageTest.Bmp");*/
 
 	LevelPlayer = CreateActor<Player>();
-	LevelPlayer->SetGroundTexture("BoSSTest1_1.bmp");
+	LevelPlayer->SetGroundTexture("Stage1_1.bmp");
 	//LevelPlayer->OverOn();
 
 	CreateActor<PlayUIManager>();
@@ -134,7 +140,7 @@ void PlayLevel::LevelStart(GameEngineLevel* _PrevLevel)
 	
 	BGMPlayer = GameEngineSound::SoundPlay("Stage1.mp3");
 
-	LevelPlayer->SetGroundTexture("BoSSTest1_1.bmp");
+	LevelPlayer->SetGroundTexture("Stage1_1.bmp");
 	//float4 WinScale = GameEngineWindow::MainWindow.GetScale();
 	//LevelPlayer->SetPos(WinScale.Half());
 	// 0 0

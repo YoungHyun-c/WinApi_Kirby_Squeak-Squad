@@ -5,6 +5,7 @@ enum class PlayerState
 {
 	Idle,
 	Run,
+	JumpUp,
 	Max, // 일반적으로 사용하지 않는 값.
 };
 
@@ -20,6 +21,8 @@ class Player : public PlayActor
 {
 private:
 	static Player* MainPlayer;
+
+	PlayerDir dirstate_;
 
 public:
 	static Player* GetMainPlayer()
@@ -40,13 +43,20 @@ public:
 
 	GameEngineRenderer* MainRenderer = nullptr;
 
+	PlayerState AbilityType_;
+
+	float4 JumpDir_;
+
 protected:
 	void StateUpdate(float _Delta);
 	void IdleStart();
 	void RunStart();
+
 	//클래스로 만들어도 되고
 	void IdleUpdate(float _Delta);
 	void RunUpdate(float _Delta);
+	void JumpUp();
+	void LeftRightCheck();
 
 	void ChangeState(PlayerState State);
 

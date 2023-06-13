@@ -152,7 +152,7 @@ void Player::Start()
 		Ptr->SetRenderPos({ -400, -270 });
 		Ptr->SetRenderScale({ 200, 10 });
 		Ptr->SetTexture("HPBar.Bmp");
-		Ptr->SetText("라라라라");
+		Ptr->SetText("HP");
 	}
 
 	{
@@ -447,3 +447,4 @@ void Player::Render(float _Delta)
 	Data.Pos = ActorCameraPos() + RightCheck;
 	Rectangle(dc, Data.iLeft(), Data.iTop(), Data.iRight(), Data.iBot());
 }
+
