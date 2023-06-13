@@ -35,7 +35,7 @@ void PlayLevel::Start()
 		FilePath.MoveChild("Resource\\BackGround\\");
 		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("StageTest.bmp"));
 		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("Stage1_1.bmp"));
-		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("Stage1_Back3.bmp"));
+		ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("Stage1_1_Back 2.bmp"));
 		//ResourcesManager::GetInst().TextureLoad(FilePath.PlusFilePath("Tile.bmp"));
 		//ResourcesManager::GetInst().CreateSpriteSheet("Tile.bmp", 24, 40);
 	}
@@ -67,7 +67,7 @@ void PlayLevel::Start()
 
 
 	FirstBackGroundPtr = CreateActor<BackGround>();
-	FirstBackGroundPtr->Init("Stage1_Back3.bmp", "Stage1_1.bmp");
+	FirstBackGroundPtr->Init("Stage1_1_Back 2.bmp", "Stage1_1.bmp");
 	BackGroundPtr = CreateActor<BackGround>();
 	BackGroundPtr->Init("StageTest.Bmp", "Stage1_1.bmp");
 	//FirstBackGroundPtr->CreateRenderer("Stage1_1_Back.bmp",0);

@@ -56,7 +56,7 @@ void Player::Start()
 	//SetPos({ 200, 200 });
 	//SetScale({ 100, 100 });
 
-	if (false == ResourcesManager::GetInst().IsLoadTexture("Test.Bmp"))
+	if (false == ResourcesManager::GetInst().IsLoadTexture("KirbyRightNormal.Bmp"))
 	{
 		GameEnginePath FilePath;
 		FilePath.SetCurrentPath();
@@ -136,7 +136,7 @@ void Player::Start()
 		//MainRenderer->ChangeAnimation("Idle");
 		MainRenderer->ChangeAnimation("Right_Idle");
 		
-		MainRenderer->SetRenderScale({ 200, 40 });
+		MainRenderer->SetRenderScale({ 400, 400 });
 		//MainRenderer->SetRenderScaleToTexture();
 
 		/*GameEngineRenderer* Ptr = CreateRenderer("Test.Bmp", RenderOrder::Play);
@@ -150,7 +150,7 @@ void Player::Start()
 	{
 		GameEngineRenderer* Ptr = CreateRenderer("HPbar.Bmp", RenderOrder::Play);
 		Ptr->SetRenderPos({ -400, -270 });
-		Ptr->SetRenderScale({ 200, 10 });
+		Ptr->SetRenderScale({ 200, 200 });
 		Ptr->SetTexture("HPBar.Bmp");
 		Ptr->SetText("HP");
 	}
